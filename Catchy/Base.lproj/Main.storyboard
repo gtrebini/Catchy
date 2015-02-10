@@ -759,8 +759,8 @@
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="kRb-Kd-I8Z"/>
                                                             <exclude reference="3qw-tG-ulI"/>
+                                                            <exclude reference="kRb-Kd-I8Z"/>
                                                         </mask>
                                                     </variation>
                                                 </label>
@@ -777,9 +777,9 @@
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="rWL-2M-i3a"/>
-                                                            <exclude reference="LkX-Ir-FPb"/>
                                                             <exclude reference="Fb7-JZ-JWa"/>
+                                                            <exclude reference="LkX-Ir-FPb"/>
+                                                            <exclude reference="rWL-2M-i3a"/>
                                                         </mask>
                                                     </variation>
                                                 </label>

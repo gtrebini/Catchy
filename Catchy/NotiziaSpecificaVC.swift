@@ -84,9 +84,8 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         
     }
 
-
     
-    var notizia = Notizie (category: "", date: NSDate(), title: "", image: UIImage(), body: "")
+     var notizia = Notizie (pageid: 0, pageidstoria: 0, pageurl: "", pageurlstoria: "", aggiornato: NSDate(),category: "", date: NSDate(), title: "", image: UIImage(), body: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
