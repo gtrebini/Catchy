@@ -69,6 +69,7 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
     @IBOutlet weak var date2Label: UILabel!
     @IBOutlet weak var titolo2Label: UILabel!
     @IBOutlet weak var body2: UILabel!
+    @IBOutlet weak var followStory2: UILabel!
     
     @IBAction func btnSubmit(sender: AnyObject) {
         
@@ -81,7 +82,18 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
             self.performSegueWithIdentifier("showFollowedStoriesVC", sender:self)
 
         }
-        
+        if index == 1{
+            self.performSegueWithIdentifier("showCategorieVC", sender:self)
+            
+        }
+        if index == 2{
+            self.performSegueWithIdentifier("showFAQS&HELPVC", sender:self)
+            
+        }
+        if index == 3{
+            self.performSegueWithIdentifier("showOpzioniVC", sender:self)
+            
+        }
     }
 
     
@@ -102,11 +114,21 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         
         image2.image = notizia.image
         image2.clipsToBounds=true
+        
+        
+        
         source2Label.text = notizia.category
-        date2Label.text = dateFormatter.stringFromDate(notizia.date)
-        titolo2Label.text = notizia.title
+        source2Label.font = UIFont (name: "PlayfairDisplay-Italic", size: 16)
+        
+        date2Label.text = dateFormatter.stringFromDate(notizia.date).uppercaseString
+        date2Label.font = UIFont (name: "Oswald-Regular", size: 16)
+        
+        titolo2Label.text = notizia.title.uppercaseString
+        titolo2Label.font = UIFont (name: "Oswald-Regular", size: 18)
+        
         body2.text = notizia.body
-      
+       
+        followStory2.font = UIFont (name: "PlayfairDisplay-Italic", size: 16)
         
         
     }

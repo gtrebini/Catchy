@@ -57,8 +57,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         cell.categoryLabel.text = news[indexPath.row].category
         cell.categoryLabel.font = UIFont (name: "PlayfairDisplay-Italic", size: 16)
         
-        cell.dateLabel.text = dateFormatter.stringFromDate(news[indexPath.row].date)
-        cell.dateLabel.font = UIFont (name: "PlayfairDisplay-Italic", size: 16)
+        cell.dateLabel.text = dateFormatter.stringFromDate(news[indexPath.row].date).uppercaseString
+        cell.dateLabel.font = UIFont (name: "Oswald-Regular", size: 16)
 
         
         var encodedString = news[indexPath.row].title as String
@@ -73,7 +73,7 @@ let attributedString = NSAttributedString(data: encodedData, options: attributed
 
 var decodedString = attributedString?.string
 
-        cell.titleLabel.text = decodedString
+        cell.titleLabel.text = decodedString?.uppercaseString
     
     })
         cell.titleLabel.font = UIFont (name: "Oswald-Regular", size: 18)

@@ -39,7 +39,7 @@ class SideBar: NSObject, SideBarTableViewControllerDelegate {
     init(sourceView:UIView){
         super.init()
         originView = sourceView
-        sideBarTableViewController.tableData = ["first item", "second item"]
+        sideBarTableViewController.tableData = ["Storie seguite", "Personalizza categorie", "FAQS & Help", "Opzioni"]
         
         
         setupSideBar()
