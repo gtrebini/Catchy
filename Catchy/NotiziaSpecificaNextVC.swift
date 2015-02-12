@@ -1,21 +1,20 @@
 //
-//  NotiziaSpecificaVC.swift
+//  NotiziaSpecificaNextVC.swift
 //  Catchy
 //
-//  Created by TSC Consulting on 14/01/15.
+//  Created by TSC Consulting on 12/02/15.
 //  Copyright (c) 2015 TSC Consulting. All rights reserved.
 //
 
 import UIKit
 
-class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate {
+class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDelegate {
     
     var tuttelenotizie:Array<Notizie>!
     var notizieAll:Array<Notizie>!
     var idNotizie:Array<Int>!
     var indexCorrente:Int!
-    var notiziaCorrente:Notizie!
-    
+     var notiziaCorrente:Notizie!
     var dateFormatter = NSDateFormatter()
     
     var sideBar:SideBar = SideBar()
@@ -47,16 +46,18 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
-        if segue.identifier == "showTutteleNotizie" {
+        if segue.identifier == "showTutteleNotizieBack" {
             
-            let detailVC:NotiziaSpecificanextVC = segue.destinationViewController as NotiziaSpecificanextVC
-            detailVC.notizia = notiziaCorrente as Notizie
+            let detailVC:NotiziaSpecificaVC = segue.destinationViewController as NotiziaSpecificaVC
+          detailVC.notizia = notiziaCorrente as Notizie
             detailVC.tuttelenotizie = tuttelenotizie
             
             //presentViewController(vc, animated: true, completion:nil )
-        }
-    
 
+            
+            
+        }
+        
         if (segue.identifier == "searchVC2") {
             var svc = segue.destinationViewController as SearchVC;
             svc.dataPassed = searchBar2.text
@@ -135,74 +136,26 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         followStory2.font = UIFont (name: "PlayfairDisplay-Italic", size: 16)
         
         
+        var swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        
+        self.viewSwipe.addGestureRecognizer(swipeRight)
         
         
-        if tuttelenotizie == nil {
-        
-        
-        
-        let request = NSMutableURLRequest(URL: NSURL(string: "http://23.251.141.230/" + notizia.pageurlstoria)!)
-        
-      //  println("http://23.251.141.230/" + notizia.pageurlstoria)
-        request.HTTPMethod = "POST"
-        let postString = ""
-        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
-        
-        
-        
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {(data, response, error)
-            
-            in
-            
-            if error != nil {
-                println("error=\(error)")
-                return
-            }
-            
-            
-            
-            let   responseString = NSString(data: data, encoding: NSUTF8StringEncoding)!
-            
-            
-            
-            self.tuttelenotizie = JsonDecoder.decodeNews(responseString)
-            
-            
-            
-        })
-        
-        
-        
-        task.resume()
-        
-           dispatch_async(dispatch_get_main_queue(),{
-            
-            
-        
-       
-         })
-        
-        }
+        var swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        self.viewSwipe.addGestureRecognizer(swipeLeft)
         
         do{
-            
+            //var actInd:UIActivityIndicatorView = UIActivityIndicatorView()
             // println("notizieAll è vuota")
         }while(tuttelenotizie == nil)
         
         for x in tuttelenotizie{
             idNotizie.append(x.pageid)
         }
-        
-        indexCorrente = idNotizie.indexOf(notizia.pageid)
-        
-        var swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
-        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
-        self.viewSwipe.addGestureRecognizer(swipeRight)
-        
-        var swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
-        self.viewSwipe.addGestureRecognizer(swipeLeft)
 
+        indexCorrente = idNotizie.indexOf(notizia.pageid)
         
     }
     
@@ -212,97 +165,64 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
             
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.Right:
-                
+             
                // println("Swiped right")
-                // println("Swiped right")
                 do{
-                    
-                    // println("notizieAll è vuota")
+                    //var actInd:UIActivityIndicatorView = UIActivityIndicatorView()
+                                      // println("notizieAll è vuota")
                 }while(tuttelenotizie == nil)
-
-
+                
                 
                 
                 
                
-              
+                
                 
                 
                 if  indexCorrente!-1 >= 0 && tuttelenotizie[indexCorrente!-1] !== nil {
-                    var vc:NotiziaSpecificanextVC = NotiziaSpecificanextVC()
+                    var vc:NotiziaSpecificaVC = NotiziaSpecificaVC()
                     notiziaCorrente = tuttelenotizie[indexCorrente!-1]
-                    
-                    performSegueWithIdentifier("showTutteleNotizie", sender: self)
+                    performSegueWithIdentifier("showTutteleNotizieBack", sender: self)
                     println(tuttelenotizie[indexCorrente!-1].title)
                     
                 }
                 else {
                     println("Non ci sono notizie successive")
                 }
-                
-                
+
+
                 
                 
             case UISwipeGestureRecognizerDirection.Left:
                 
                 do{
-               // println("notizieAll è vuota")
+                  //  println("notizieAll è vuota")
                 }while(tuttelenotizie == nil)
                 
                 
-              
-               
-                println(idNotizie)
-                
-               
-                
+        
                 
                 if indexCorrente!+1 < tuttelenotizie.count && tuttelenotizie[indexCorrente!+1] !== nil{
-                    println(indexCorrente!+1)
-                    var vc:NotiziaSpecificanextVC = NotiziaSpecificanextVC()
-                     notiziaCorrente = tuttelenotizie[indexCorrente!+1]
-                    
-                     performSegueWithIdentifier("showTutteleNotizie", sender: self)
+                    var vc:NotiziaSpecificaVC = NotiziaSpecificaVC()
+                    notiziaCorrente = tuttelenotizie[indexCorrente!+1]
+               
+                    performSegueWithIdentifier("showTutteleNotizieBack", sender: self)
                     println(tuttelenotizie[indexCorrente!+1].title)
                 }else{
                     println("Non ci sono notizie precedenti")
                 }
 
-               // println(tuttelenotizie)
-            // println(tuttelenotizie[1])
                 
-               
-              
-               
-                
-                           default: break
+            default: break
             }
         }
     }
     
-   
-   
     
-    
-     override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     
-    
-    
-    
 }
-
-extension Array{
-    func indexOf <T:Equatable> (x:T) -> Int? {
-        for i in 0...self.count {
-            if self[i] as T == x {
-                return i
-            }
-        }
-        return nil
-    }
-}
-

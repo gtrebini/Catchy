@@ -42,11 +42,26 @@ class JsonDecoder {
             let url = NSURL(string: arrayImage[0] as String )
             let data = NSData(contentsOfURL: url!)
             
+            var topolino: Int = notiziaDict["pageid-storia"] as Int
+            var pippo: Int = notiziaDict["pageid"] as Int
+            var minnie: String = notiziaDict["pageurl"] as String
+            var pluto: String = notiziaDict["pageurl-storia"] as String
+            
+            
+            var encodedString = notiziaDict["body"] as String
+            
+            
+            let encodedData = encodedString.dataUsingEncoding(NSUTF8StringEncoding)!
+            let attributedOptions = [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType]
+            
+            
+            let attributedString = NSAttributedString(data: encodedData, options: nil, documentAttributes: nil, error: nil)
+            
+            var decodedString = attributedString?.string
             
             
             
-            
-            var n = Notizie (pageid: notiziaDict["pageid"] as Int, pageidstoria: notiziaDict["pageidstoria"] as Int, pageurl: notiziaDict["pageurl"] as String, pageurlstoria: notiziaDict["pageurlstoria"] as String, aggiornato: notiziaDict["aggiornato"] as NSDate!, category: notiziaDict["categoria"] as String, date: dateFormatter.dateFromString(notiziaDict["data"] as String) as NSDate! , title: notiziaDict["title"] as String, image: UIImage(data: data!)!, body: notiziaDict["body"] as String)
+            var n = Notizie (pageid: pippo, pageidstoria: topolino, pageurl: minnie, pageurlstoria: pluto, aggiornato: dateFormatter.dateFromString(notiziaDict["aggiornato"] as String) as NSDate!, category: notiziaDict["categoria"] as String, date: dateFormatter.dateFromString(notiziaDict["data"] as String) as NSDate! , title: notiziaDict["title"] as String, image: UIImage(data: data!)!, body: decodedString! as String)
             
             
             

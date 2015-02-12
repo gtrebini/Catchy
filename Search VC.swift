@@ -12,6 +12,41 @@ class SearchVC: UIViewController, UITableViewDelegate,UISearchBarDelegate, SideB
     
     var sideBar:SideBar = SideBar()
     
+    
+  
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        
+        
+        var dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateFormat = "MMM. dd yyyy / HH:mm"
+        
+        
+        
+        
+        var cell = tableView.dequeueReusableCellWithIdentifier("NewsCell") as CustomCell
+        
+        cell.imageBackground.image = news[indexPath.row].image
+        cell.imageBackground.clipsToBounds=true
+        
+        cell.categoryLabel.text = news[indexPath.row].category
+        cell.categoryLabel.font = UIFont (name: "Oswald-Regular", size: 16)
+        
+        cell.dateLabel.text = dateFormatter.stringFromDate(news[indexPath.row].date).uppercaseString
+        cell.dateLabel.font = UIFont (name: "Oswald-Regular", size: 16)
+        
+        
+        cell.titleLabel.text = news[indexPath.row].title.uppercaseString
+        cell.titleLabel.font = UIFont (name: "Oswald-Regular", size: 18)
+        
+        
+        
+        return cell
+        
+    }
+
+    
    
     @IBOutlet weak var labelA: UILabel!
     

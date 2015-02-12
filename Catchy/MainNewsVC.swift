@@ -56,10 +56,10 @@ class MainNewsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         cell.imageBackground.clipsToBounds=true
         
         cell.categoryLabel.text = news2[indexPath.row].category
-        cell.categoryLabel.font = UIFont (name: "PlayfairDisplay-Italic", size: 16)
+        cell.categoryLabel.font = UIFont (name: "Oswald-Regular", size: 16)
         
-        cell.dateLabel.text = dateFormatter.stringFromDate(news2[indexPath.row].date)
-        cell.dateLabel.font = UIFont (name: "PlayfairDisplay-Italic", size: 16)
+        cell.dateLabel.text = dateFormatter.stringFromDate(news2[indexPath.row].date).uppercaseString
+        cell.dateLabel.font = UIFont (name: "Oswald-Regular", size: 16)
         
         
         cell.titleLabel.text = news2[indexPath.row].title.uppercaseString

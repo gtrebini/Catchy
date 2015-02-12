@@ -33,6 +33,7 @@
 		5981A5CF1A60231600ABBA4D /* lago natura.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5981A5CE1A60231600ABBA4D /* lago natura.jpeg */; };
 		598A3FB01A82609700A0D7F0 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598A3FAF1A82609700A0D7F0 /* SideBarTableViewController.swift */; };
 		598A3FB21A82661E00A0D7F0 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598A3FB11A82661E00A0D7F0 /* SideBar.swift */; };
+		59903B4E1A8CA44000E436E9 /* NotiziaSpecificaNextVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59903B4D1A8CA43F00E436E9 /* NotiziaSpecificaNextVC.swift */; };
 		59994B3A1A5FD6740001B7C4 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59994B391A5FD6740001B7C4 /* SignUpVC.swift */; };
 		59994B3D1A5FE1020001B7C4 /* AccessoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59994B3C1A5FE1020001B7C4 /* AccessoVC.swift */; };
 		599D9BBE1A76945A00AD7636 /* JsonDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599D9BBD1A76945A00AD7636 /* JsonDecoder.swift */; };
@@ -53,6 +54,8 @@
 		59EDDCB11A63EBA300700539 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EDDCB01A63EBA300700539 /* HomeVC.swift */; };
 		59F204B81A7FC376006BFD84 /* PlayfairDisplay-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 595846CF1A7FAB24007A97DA /* PlayfairDisplay-Italic.otf */; };
 		59F204BB1A7FD006006BFD84 /* PlayfairDisplaySC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59F204BA1A7FCFF9006BFD84 /* PlayfairDisplaySC-Regular.ttf */; };
+		59FD43F71A8B886100A4F7B5 /* followed.png in Resources */ = {isa = PBXBuildFile; fileRef = 59FD43F51A8B886100A4F7B5 /* followed.png */; };
+		59FD43F81A8B886100A4F7B5 /* unfollowed.png in Resources */ = {isa = PBXBuildFile; fileRef = 59FD43F61A8B886100A4F7B5 /* unfollowed.png */; };
 		59FEDAF71A6811DE00DB25F8 /* pavesino.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 59FEDAF61A6811DE00DB25F8 /* pavesino.pdf */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +97,7 @@
 		5981A5CE1A60231600ABBA4D /* lago natura.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "lago natura.jpeg"; sourceTree = "<group>"; };
 		598A3FAF1A82609700A0D7F0 /* SideBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewController.swift; sourceTree = "<group>"; };
 		598A3FB11A82661E00A0D7F0 /* SideBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
+		59903B4D1A8CA43F00E436E9 /* NotiziaSpecificaNextVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotiziaSpecificaNextVC.swift; sourceTree = "<group>"; };
 		59994B391A5FD6740001B7C4 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		59994B3C1A5FE1020001B7C4 /* AccessoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessoVC.swift; sourceTree = "<group>"; };
 		599D9BBD1A76945A00AD7636 /* JsonDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonDecoder.swift; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 		59E3260E1A6E980200CB2B65 /* Search VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Search VC.swift"; sourceTree = "<group>"; };
 		59EDDCB01A63EBA300700539 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		59F204BA1A7FCFF9006BFD84 /* PlayfairDisplaySC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplaySC-Regular.ttf"; sourceTree = "<group>"; };
+		59FD43F51A8B886100A4F7B5 /* followed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = followed.png; sourceTree = "<group>"; };
+		59FD43F61A8B886100A4F7B5 /* unfollowed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unfollowed.png; sourceTree = "<group>"; };
 		59FEDAF61A6811DE00DB25F8 /* pavesino.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = pavesino.pdf; path = Catchy/pavesino.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,6 +169,8 @@
 				595846CF1A7FAB24007A97DA /* PlayfairDisplay-Italic.otf */,
 				59F204BA1A7FCFF9006BFD84 /* PlayfairDisplaySC-Regular.ttf */,
 				5979FDBD1A7FD9C100584856 /* Oswald-Regular.ttf */,
+				59FD43F51A8B886100A4F7B5 /* followed.png */,
+				59FD43F61A8B886100A4F7B5 /* unfollowed.png */,
 			);
 			name = Immagini;
 			sourceTree = "<group>";
@@ -181,6 +189,14 @@
 				595C3DF51A84FE6B00F5BB19 /* FollowedStoriesVC.swift */,
 			);
 			name = Impostazioni;
+			sourceTree = "<group>";
+		};
+		59903B4C1A8CA42600E436E9 /* NotiziaSpecificaNext */ = {
+			isa = PBXGroup;
+			children = (
+				59903B4D1A8CA43F00E436E9 /* NotiziaSpecificaNextVC.swift */,
+			);
+			name = NotiziaSpecificaNext;
 			sourceTree = "<group>";
 		};
 		59994B351A5FD0790001B7C4 /* Home */ = {
@@ -249,6 +265,7 @@
 				59994B381A5FD65A0001B7C4 /* SignUp */,
 				59C0BAB71A5ED29300A4E0E9 /* SignIn */,
 				594926FE1A66BA6F007E548F /* NotiziaSpecifica */,
+				59903B4C1A8CA42600E436E9 /* NotiziaSpecificaNext */,
 				59E3260D1A6E97EC00CB2B65 /* Search */,
 				59994B351A5FD0790001B7C4 /* Home */,
 				59A10DF21A8A022000DE0000 /* MainStory */,
@@ -418,11 +435,13 @@
 				5916B1651A6D02A60015DDAC /* follow.pdf in Resources */,
 				59C0BA921A5E972800A4E0E9 /* Main.storyboard in Resources */,
 				59F204BB1A7FD006006BFD84 /* PlayfairDisplaySC-Regular.ttf in Resources */,
+				59FD43F71A8B886100A4F7B5 /* followed.png in Resources */,
 				5916B1691A6D02A60015DDAC /* ico_menu.pdf in Resources */,
 				5916B1791A6D2CE40015DDAC /* ico_my_30.pdf in Resources */,
 				5916B1621A6D02A60015DDAC /* bracket_green.pdf in Resources */,
 				5916B1771A6D2CDF0015DDAC /* ico_menu_30.pdf in Resources */,
 				5916B1671A6D02A60015DDAC /* ico_fb.pdf in Resources */,
+				59FD43F81A8B886100A4F7B5 /* unfollowed.png in Resources */,
 				5916B1701A6D02A60015DDAC /* not_follow.pdf in Resources */,
 				5916B1641A6D02A60015DDAC /* circle_big.pdf in Resources */,
 				5916B16C1A6D02A60015DDAC /* ico_tw.pdf in Resources */,
@@ -459,6 +478,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59903B4E1A8CA44000E436E9 /* NotiziaSpecificaNextVC.swift in Sources */,
 				595C3DF61A84FE6B00F5BB19 /* FollowedStoriesVC.swift in Sources */,
 				598A3FB01A82609700A0D7F0 /* SideBarTableViewController.swift in Sources */,
 				59994B3A1A5FD6740001B7C4 /* SignUpVC.swift in Sources */,
@@ -600,9 +620,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Catchy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -610,9 +633,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Catchy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -18,7 +18,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     
     var sideBar:SideBar = SideBar()
     
-    
+    var actInd:UIActivityIndicatorView!
     
     
     
@@ -55,15 +55,17 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         cell.imageBackground.clipsToBounds=true
         
         cell.categoryLabel.text = news[indexPath.row].category
-        cell.categoryLabel.font = UIFont (name: "PlayfairDisplay-Italic", size: 16)
+        cell.categoryLabel.font = UIFont (name: "Oswald-Regular", size: 16)
         
-        cell.dateLabel.text = dateFormatter.stringFromDate(news[indexPath.row].date)
-        cell.dateLabel.font = UIFont (name: "PlayfairDisplay-Italic", size: 16)
+        cell.dateLabel.text = dateFormatter.stringFromDate(news[indexPath.row].date).uppercaseString
+        cell.dateLabel.font = UIFont (name: "Oswald-Regular", size: 16)
 
         
         cell.titleLabel.text = news[indexPath.row].title.uppercaseString
         cell.titleLabel.font = UIFont (name: "Oswald-Regular", size: 18)
         
+        actInd.stopAnimating()
+        actInd.hidesWhenStopped = true
         
         
         return cell
@@ -77,7 +79,11 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         
         super.viewDidLoad()
    
-        
+        actInd = UIActivityIndicatorView()
+        actInd.frame = CGRectMake(self.view.frame.width/2-40 , self.view.frame.height/2, 100, 100)
+        self.view.addSubview(actInd)
+        actInd.hidden = false
+        actInd.startAnimating()
         
         //dichiarar in tutte le opzioni
         sideBar = SideBar(sourceView: self.view)
