@@ -80,7 +80,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         super.viewDidLoad()
    
         actInd = UIActivityIndicatorView()
-        actInd.frame = CGRectMake(self.view.frame.width/2-40 , self.view.frame.height/2, 100, 100)
+        actInd.frame = CGRectMake(self.view.frame.width/2-50 , self.view.frame.height/2, 100, 100)
         self.view.addSubview(actInd)
         actInd.hidden = false
         actInd.startAnimating()
