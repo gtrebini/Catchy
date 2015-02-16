@@ -14,69 +14,12 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
     var notizieAll:Array<Notizie>!
     var idNotizie:Array<Int>!
     var indexCorrente:Int!
-     var notiziaCorrente:Notizie!
+    var notiziaCorrente:Notizie!
     var dateFormatter = NSDateFormatter()
-    
     var sideBar:SideBar = SideBar()
     
     
-    
-    
     @IBOutlet weak var searchBar2: UISearchBar!
-    
-    
-    @IBAction func searchButton2(sender: AnyObject) {
-        
-        UIView.animateWithDuration(0.2, delay: 0.1, options: .CurveEaseOut, animations: {
-            
-            var frame = self.totalView.frame
-            if frame.origin.y == 0{
-                frame.origin.y = 40
-            } else {
-                frame.origin.y = 0
-            }
-            self.totalView.frame = frame
-            }, completion: { finished in
-                
-        })
-        
-    }
-    
-    
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        
-        if segue.identifier == "showTutteleNotizieBack" {
-            
-            let detailVC:NotiziaSpecificaVC = segue.destinationViewController as NotiziaSpecificaVC
-          detailVC.notizia = notiziaCorrente as Notizie
-            detailVC.tuttelenotizie = tuttelenotizie
-            
-            //presentViewController(vc, animated: true, completion:nil )
-
-            
-            
-        }
-        
-        if (segue.identifier == "searchVC2") {
-            var svc = segue.destinationViewController as SearchVC;
-            svc.dataPassed = searchBar2.text
-        }
-        
-    }
-    
-    
-    func searchBarSearchButtonClicked( searchBar: UISearchBar!){
-        
-        searchBar.resignFirstResponder()
-        
-        
-        self.performSegueWithIdentifier("searchVC2", sender:self)
-        
-    }
-    
-    
-    
     @IBOutlet var totalView: UIView!
     @IBOutlet weak var image2: UIImageView!
     @IBOutlet weak var source2Label: UILabel!
@@ -86,23 +29,9 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
     @IBOutlet weak var followStory2: UILabel!
     @IBOutlet weak var viewSwipe: UIView!
     
-    @IBAction func btnSubmit(sender: AnyObject) {
-        
-        sideBar.showSideBar(!sideBar.isSideBarOpen)
-    }
     
+     var notizia = Notizie (pageid: 0, pageidstoria: 0, pageurl: "", pageurlstoria: "", aggiornato: NSDate(),category: "", date: NSDate(), title: "", image: UIImage(), body: "")
     
-    func sideBarDidSelectButtonAtIndex(index: Int){
-        if index == 0{
-            self.performSegueWithIdentifier("showFollowedStoriesVC", sender:self)
-            
-        }
-        
-    }
-    
-    
-    
-    var notizia = Notizie (pageid: 0, pageidstoria: 0, pageurl: "", pageurlstoria: "", aggiornato: NSDate(),category: "", date: NSDate(), title: "", image: UIImage(), body: "")
     
     override func viewDidLoad() {
         
@@ -114,8 +43,6 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
         
         sideBar = SideBar(sourceView: self.view)
         sideBar.delegate = self
-        
-        
         
         dateFormatter.dateFormat = "MMM. dd yyyy / HH:mm"
         
@@ -147,17 +74,83 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
         self.viewSwipe.addGestureRecognizer(swipeLeft)
         
         do{
-            //var actInd:UIActivityIndicatorView = UIActivityIndicatorView()
-            // println("notizieAll è vuota")
+            
         }while(tuttelenotizie == nil)
         
         for x in tuttelenotizie{
             idNotizie.append(x.pageid)
         }
-
+        
         indexCorrente = idNotizie.indexOf(notizia.pageid)
         
     }
+
+    
+    @IBAction func btnSubmit(sender: AnyObject) {
+        
+        sideBar.showSideBar(!sideBar.isSideBarOpen)
+    }
+    
+    
+    @IBAction func searchButton2(sender: AnyObject) {
+        
+        UIView.animateWithDuration(0.2, delay: 0.1, options: .CurveEaseOut, animations: {
+            
+            var frame = self.totalView.frame
+            if frame.origin.y == 0{
+                frame.origin.y = 40
+            } else {
+                frame.origin.y = 0
+            }
+            self.totalView.frame = frame
+            }, completion: { finished in
+                
+        })
+        
+    }
+    
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        
+        if segue.identifier == "showTutteleNotizieBack" {
+            
+            let detailVC:NotiziaSpecificaVC = segue.destinationViewController as NotiziaSpecificaVC
+            detailVC.notizia = notiziaCorrente as Notizie
+            detailVC.tuttelenotizie = tuttelenotizie
+   
+        }
+        
+        if (segue.identifier == "searchVC2") {
+            var svc = segue.destinationViewController as SearchVC;
+            svc.dataPassed = searchBar2.text
+        }
+        
+    }
+    
+    
+    func searchBarSearchButtonClicked( searchBar: UISearchBar!){
+        
+        searchBar.resignFirstResponder()
+        
+        
+        self.performSegueWithIdentifier("searchVC2", sender:self)
+        
+    }
+    
+
+    func sideBarDidSelectButtonAtIndex(index: Int){
+        if index == 0{
+            self.performSegueWithIdentifier("showFollowedStoriesVC", sender:self)
+            
+        }
+        
+    }
+    
+    
+    
+   
+    
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         
@@ -166,18 +159,9 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.Right:
              
-               // println("Swiped right")
                 do{
-                    //var actInd:UIActivityIndicatorView = UIActivityIndicatorView()
-                                      // println("notizieAll è vuota")
+                  
                 }while(tuttelenotizie == nil)
-                
-                
-                
-                
-               
-                
-                
                 
                 if  indexCorrente!-1 >= 0 && tuttelenotizie[indexCorrente!-1] !== nil {
                     var vc:NotiziaSpecificaVC = NotiziaSpecificaVC()
@@ -196,11 +180,8 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
             case UISwipeGestureRecognizerDirection.Left:
                 
                 do{
-                  //  println("notizieAll è vuota")
+                 
                 }while(tuttelenotizie == nil)
-                
-                
-        
                 
                 if indexCorrente!+1 < tuttelenotizie.count && tuttelenotizie[indexCorrente!+1] !== nil{
                     var vc:NotiziaSpecificaVC = NotiziaSpecificaVC()

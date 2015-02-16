@@ -38,6 +38,12 @@ class SideBar: NSObject, SideBarTableViewControllerDelegate {
     
     init(sourceView:UIView){
         super.init()
+        if isSideBarOpen == false {
+            
+            sideBarContainerView.hidden = true
+        }
+        
+        
         originView = sourceView
         sideBarTableViewController.tableData = ["first item", "second item"]
         
@@ -84,6 +90,8 @@ class SideBar: NSObject, SideBarTableViewControllerDelegate {
 
         
         func showSideBar (shouldOpen:Bool){
+            isSideBarOpen = true
+            sideBarContainerView.hidden = false
             
             animator.removeAllBehaviors()
             isSideBarOpen = shouldOpen
@@ -111,7 +119,7 @@ class SideBar: NSObject, SideBarTableViewControllerDelegate {
             sideBarBehavior.elasticity = 0.3
             animator.addBehavior(sideBarBehavior)
             
-            
+        
             
         }
         func handleSwipe(){

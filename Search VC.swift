@@ -12,17 +12,30 @@ class SearchVC: UIViewController, UITableViewDelegate,UISearchBarDelegate, SideB
     
     var sideBar:SideBar = SideBar()
     
+    @IBOutlet weak var labelA: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var viewSearch: UIView!
+    @IBOutlet var totalView: UIView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
-  
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        sideBar = SideBar(sourceView: self.view)
+        sideBar.delegate = self
+        
+        labelA.text = "about: " + dataPassed
+        
+        searchBar.text = dataPassed
+        
+    }
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         
-        
         var dateFormatter = NSDateFormatter()
-        
         dateFormatter.dateFormat = "MMM. dd yyyy / HH:mm"
-        
-        
         
         
         var cell = tableView.dequeueReusableCellWithIdentifier("NewsCell") as CustomCell
@@ -47,21 +60,7 @@ class SearchVC: UIViewController, UITableViewDelegate,UISearchBarDelegate, SideB
     }
 
     
-   
-    @IBOutlet weak var labelA: UILabel!
-    
-    @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var viewSearch: UIView!
-    
-    
-    @IBOutlet var totalView: UIView!
-    
-    
-    @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBAction func btnSubmit(sender: AnyObject) {
-        
         sideBar.showSideBar(!sideBar.isSideBarOpen)
     }
     
@@ -74,9 +73,7 @@ class SearchVC: UIViewController, UITableViewDelegate,UISearchBarDelegate, SideB
         }
     }*/
 
-    
-    
-    func sideBarDidSelectButtonAtIndex(index: Int) {
+   func sideBarDidSelectButtonAtIndex(index: Int) {
         if index == 0{
          
            
@@ -115,21 +112,6 @@ class SearchVC: UIViewController, UITableViewDelegate,UISearchBarDelegate, SideB
     var dataPassed:String!
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        sideBar = SideBar(sourceView: self.view)
-        
-         sideBar.delegate = self
-        
-        
-       labelA.text = "about: " + dataPassed
-        
-       searchBar.text = dataPassed
-
-        
-        // Do any additional setup after loading the view.
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

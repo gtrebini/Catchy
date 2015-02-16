@@ -14,16 +14,11 @@ class JsonDecoder {
     
     
     
-    
     class func  decodeNews(jsonString:NSString) -> Array<Notizie> {
         
         var error: NSError?
         
         var notizie: [Notizie] = [Notizie]()
-        
-        
-       
-        
         
         var json: NSArray = NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSArray
         
