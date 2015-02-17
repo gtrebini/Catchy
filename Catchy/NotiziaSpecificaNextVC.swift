@@ -17,7 +17,8 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
     var notiziaCorrente:Notizie!
     var dateFormatter = NSDateFormatter()
     var sideBar:SideBar = SideBar()
-    
+    let transitionManager = TransitionManager()
+    var isRight:Bool!
     
     @IBOutlet weak var searchBar2: UISearchBar!
     @IBOutlet var totalView: UIView!
@@ -118,6 +119,20 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
             let detailVC:NotiziaSpecificaVC = segue.destinationViewController as NotiziaSpecificaVC
             detailVC.notizia = notiziaCorrente as Notizie
             detailVC.tuttelenotizie = tuttelenotizie
+            detailVC.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
+            if(isRight==true){
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.view.frame = CGRectOffset(self.view.frame, -UIScreen.mainScreen().bounds.width, 0.0)
+                    detailVC.view.frame = CGRectOffset(detailVC.view.frame, -UIScreen.mainScreen().bounds.width, 0.0)
+                })
+            }else if(isRight==false){
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    
+                    self.view.frame = CGRectOffset(detailVC.view.frame, UIScreen.mainScreen().bounds.width, 0.0)
+                    detailVC.view.frame = CGRectOffset(self.view.frame, UIScreen.mainScreen().bounds.width, 0.0)
+
+                })
+            }
    
         }
         
@@ -158,9 +173,9 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
             
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.Right:
-             
+                isRight=false
+                    println("isright=false")
                 do{
-                  
                 }while(tuttelenotizie == nil)
                 
                 if  indexCorrente!-1 >= 0 && tuttelenotizie[indexCorrente!-1] !== nil {
@@ -178,7 +193,8 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
                 
                 
             case UISwipeGestureRecognizerDirection.Left:
-                
+                isRight=true
+                println("isright=true")
                 do{
                  
                 }while(tuttelenotizie == nil)

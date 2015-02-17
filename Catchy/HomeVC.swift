@@ -18,6 +18,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     
     var sideBar:SideBar = SideBar()
     var actInd:UIActivityIndicatorView!
+    var notiziaSearch:Notizie!
     
     @IBOutlet weak var tableViewHomeVC: UITableView!
     @IBOutlet weak var todayIsAbout: UILabel!
@@ -26,9 +27,12 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     @IBOutlet var totalView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+  
+
         
         actInd = UIActivityIndicatorView()
         actInd.frame = CGRectMake(self.view.frame.width/2-50 , self.view.frame.height/2, 100, 100)
@@ -105,18 +109,27 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     }
     
     
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "showItemDetail" {
+            /*
+            var actIndDetail:UIActivityIndicatorView = UIActivityIndicatorView()
+            actIndDetail.frame = CGRectMake(self.view.frame.width/2-50 , self.view.frame.height/2, 100, 100)
+            self.view.addSubview(actIndDetail)
+            actIndDetail.hidden = false
+            actIndDetail.startAnimating()
+*/
             let indexPath:NSIndexPath = self.tableViewHomeVC.indexPathForSelectedRow()!
             let detailVC:NotiziaSpecificaVC = segue.destinationViewController as NotiziaSpecificaVC
             detailVC.notizia = news[indexPath.row] as Notizie
-            
+           
             
         }
         
         if (segue.identifier == "searchVC") {
-            var svc = segue.destinationViewController as SearchVC;
+            var svc = segue.destinationViewController as SearchVC
             svc.dataPassed = searchBar.text
+            svc.notizia = notiziaSearch
         }
     }
     
@@ -156,7 +169,15 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     func searchBarSearchButtonClicked( searchBar: UISearchBar!){
         
         searchBar.resignFirstResponder()
-    
+        do{
+        
+        }while(news.count==0)
+        
+        for n in news {
+            if(NSString(string: n.title).containsString("Mattarella") || NSString(string: n.body).containsString("sonda")){
+                notiziaSearch = n
+            }
+        }
         
         self.performSegueWithIdentifier("searchVC", sender:self)
         

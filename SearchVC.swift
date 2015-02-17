@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Foundation
 
 class SearchVC: UIViewController, UITableViewDelegate,UISearchBarDelegate, SideBarDelegate {
+    
+    
     
     var sideBar:SideBar = SideBar()
     
@@ -18,8 +21,14 @@ class SearchVC: UIViewController, UITableViewDelegate,UISearchBarDelegate, SideB
     @IBOutlet var totalView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+   
+    var notizia = Notizie (pageid: 0, pageidstoria: 0, pageurl: "", pageurlstoria: "", aggiornato: NSDate(),category: "", date: NSDate(), title: "", image: UIImage(), body: "")
+    
+    
     
     override func viewDidLoad() {
+        
+
         super.viewDidLoad()
         sideBar = SideBar(sourceView: self.view)
         sideBar.delegate = self

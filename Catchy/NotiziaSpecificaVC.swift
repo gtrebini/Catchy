@@ -17,11 +17,10 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
     var notiziaCorrente:Notizie!
     var dateFormatter = NSDateFormatter()
     var sideBar:SideBar = SideBar()
-    
+    let transitionManager = TransitionManager()
+    var isRight:Bool!
     
     @IBOutlet weak var searchBar2: UISearchBar!
-    
-    
     @IBOutlet var totalView: UIView!
     @IBOutlet weak var image2: UIImageView!
     @IBOutlet weak var source2Label: UILabel!
@@ -38,6 +37,7 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         searchBar2.delegate = self
         notizieAll = Array<Notizie>()
         idNotizie = Array<Int>()
@@ -117,8 +117,10 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         self.viewSwipe.addGestureRecognizer(swipeRight)
         
+        
         var swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+       
         self.viewSwipe.addGestureRecognizer(swipeLeft)
         
         
@@ -157,6 +159,20 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
             let detailVC:NotiziaSpecificanextVC = segue.destinationViewController as NotiziaSpecificanextVC
             detailVC.notizia = notiziaCorrente as Notizie
             detailVC.tuttelenotizie = tuttelenotizie
+            detailVC.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
+            if(isRight==true){
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.view.frame = CGRectOffset(self.view.frame, -UIScreen.mainScreen().bounds.width, 0.0)
+                detailVC.view.frame = CGRectOffset(detailVC.view.frame, -UIScreen.mainScreen().bounds.width, 0.0)
+            })
+            }else if(isRight==false){
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                
+                    self.view.frame = CGRectOffset(detailVC.view.frame, UIScreen.mainScreen().bounds.width, 0.0)
+                    detailVC.view.frame = CGRectOffset(self.view.frame, UIScreen.mainScreen().bounds.width, 0.0)
+                    
+                })
+            }
             
         }
         
@@ -193,13 +209,14 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             
             switch swipeGesture.direction {
-            
                 case UISwipeGestureRecognizerDirection.Right:
-              
+                     isRight=false
+                       println("isright=false")
                     do{
                         
                     }while(tuttelenotizie == nil)
-
+                    
+                    
                     if  indexCorrente!-1 >= 0 && tuttelenotizie[indexCorrente!-1] !== nil {
                         var vc:NotiziaSpecificanextVC = NotiziaSpecificanextVC()
                         notiziaCorrente = tuttelenotizie[indexCorrente!-1]
@@ -214,9 +231,10 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
                 
                 
                 case UISwipeGestureRecognizerDirection.Left:
-                
+                    isRight=true
+                    println("isright=true")
                     do{
-              
+                        
                     }while(tuttelenotizie == nil)
                 
                     if indexCorrente!+1 < tuttelenotizie.count && tuttelenotizie[indexCorrente!+1] !== nil{
@@ -260,4 +278,21 @@ extension Array{
         return nil
     }
 }
+
+
+/*extension UIView {
+    func slideRight(duration:NSTimeInterval = 1.0, completionDelegate:AnyObject? = nil){
+        var slideRightTransition = CATransition()
+        
+        if let delegate:AnyObject = completionDelegate {
+            slideRightTransition.delegate = delegate
+        }
+        
+        slideRightTransition.type = kCATransitionFromLeft
+        slideRightTransition.duration = duration
+       
+        
+        self.layer.addAnimation(slideRightTransition, forKey: "slideRightTransition")
+    }
+}*/
 
