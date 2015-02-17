@@ -257,11 +257,15 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
                 do{
                     
                 }while(tuttelenotizie == nil)
+                var imageNext:UIImage = immaginiNotiziaCorrente[immaginiIndexCorrente!-1]
                 println(immaginiIndexCorrente-1)
                 if  immaginiIndexCorrente!-1 >= 0  && immaginiNotiziaCorrente[immaginiIndexCorrente!-1] !== nil{
                     image2.image = immaginiNotiziaCorrente[immaginiIndexCorrente!-1]
                     immaginiIndexCorrente = immaginiIndexCorrente-1
                     
+                    UIView.transitionWithView(self.image2, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: { () -> Void in
+                        self.image2.image = imageNext
+                        }, completion: nil)
                 }
                 else {
                     println("Non ci sono immagini successive")
@@ -273,10 +277,16 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
                 do{
                     
                 }while(tuttelenotizie == nil)
+                var imageNext:UIImage = immaginiNotiziaCorrente[immaginiIndexCorrente!+1]
                 println(immaginiIndexCorrente+1)
                 if immaginiIndexCorrente!+1 < immaginiNotiziaCorrente.count && immaginiNotiziaCorrente[immaginiIndexCorrente!+1] !== nil{
                     image2.image = immaginiNotiziaCorrente[immaginiIndexCorrente!+1]
                     immaginiIndexCorrente = immaginiIndexCorrente+1
+                    
+                    UIView.transitionWithView(self.image2, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: { () -> Void in
+                        self.image2.image = imageNext
+                        }, completion: nil)
+                    
                 }else{
                     println("Non ci sono immagini precedenti")
                 }
