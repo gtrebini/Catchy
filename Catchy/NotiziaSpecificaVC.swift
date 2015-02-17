@@ -380,6 +380,7 @@ extension Array{
 }
 
 
+
 /*extension UIView {
     func slideRight(duration:NSTimeInterval = 1.0, completionDelegate:AnyObject? = nil){
         var slideRightTransition = CATransition()
