@@ -21,7 +21,9 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
     let transitionManager = TransitionManager()
     var isRight:Bool!
     var actInd:UIActivityIndicatorView!
-    
+    var notiziaIndexCorrente:Notizie!
+    var immaginiNotiziaCorrente:[UIImage]!
+    var immaginiIndexCorrente:Int!
     
     @IBOutlet weak var searchBar2: UISearchBar!
     @IBOutlet var totalView: UIView!
@@ -34,7 +36,7 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
     @IBOutlet weak var viewSwipe: UIView!
     
     
-     var notizia = Notizie (pageid: 0, pageidstoria: 0, pageurl: "", pageurlstoria: "", aggiornato: NSDate(),category: "", date: NSDate(), title: "", image: UIImage(), body: "")
+     var notizia = Notizie (pageid: 0, pageidstoria: 0, pageurl: "", pageurlstoria: "", aggiornato: NSDate(),category: "", date: NSDate(), title: "", image: [UIImage](), body: "")
     
     
     override func viewDidLoad() {
@@ -53,7 +55,7 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
         
         dateFormatter.dateFormat = "MMM. dd yyyy / HH:mm"
         
-        image2.image = notizia.image
+        image2.image = notizia.image[0]
         image2.clipsToBounds=true
         
         source2Label.text = notizia.category
@@ -245,6 +247,45 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
         }
     }
     
+    func respondToSwipeGestureImmagini(gesture: UIGestureRecognizer) {
+        
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.Right:
+                isRight=false
+                do{
+                    
+                }while(tuttelenotizie == nil)
+                println(immaginiIndexCorrente-1)
+                if  immaginiIndexCorrente!-1 >= 0  && immaginiNotiziaCorrente[immaginiIndexCorrente!-1] !== nil{
+                    image2.image = immaginiNotiziaCorrente[immaginiIndexCorrente!-1]
+                    immaginiIndexCorrente = immaginiIndexCorrente-1
+                    
+                }
+                else {
+                    println("Non ci sono immagini successive")
+                }
+                
+                
+            case UISwipeGestureRecognizerDirection.Left:
+                isRight=true
+                do{
+                    
+                }while(tuttelenotizie == nil)
+                println(immaginiIndexCorrente+1)
+                if immaginiIndexCorrente!+1 < immaginiNotiziaCorrente.count && immaginiNotiziaCorrente[immaginiIndexCorrente!+1] !== nil{
+                    image2.image = immaginiNotiziaCorrente[immaginiIndexCorrente!+1]
+                    immaginiIndexCorrente = immaginiIndexCorrente+1
+                }else{
+                    println("Non ci sono immagini precedenti")
+                }
+                
+            default: break
+            }
+        }
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

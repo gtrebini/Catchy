@@ -20,7 +20,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     var actInd:UIActivityIndicatorView!
 
     
-    @IBOutlet weak var tableViewHomeVC: UITableView!
+   
     @IBOutlet weak var todayIsAbout: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var viewSearch: UIView!
@@ -87,7 +87,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
   
         var cell = tableView.dequeueReusableCellWithIdentifier("NewsCell") as CustomCell
         
-        cell.imageBackground.image = news[indexPath.row].image
+        cell.imageBackground.image = news[indexPath.row].image[0]
         cell.imageBackground.clipsToBounds=true
         
         cell.categoryLabel.text = news[indexPath.row].category
@@ -119,7 +119,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
             actIndDetail.hidden = false
             actIndDetail.startAnimating()
 */
-            let indexPath:NSIndexPath = self.tableViewHomeVC.indexPathForSelectedRow()!
+            let indexPath:NSIndexPath = self.tableView.indexPathForSelectedRow()!
             let detailVC:NotiziaSpecificaVC = segue.destinationViewController as NotiziaSpecificaVC
             detailVC.notizia = news[indexPath.row] as Notizie
            

@@ -26,7 +26,7 @@ class SearchVC: UIViewController, UITableViewDelegate,UITableViewDataSource, UIS
     
     
    
-    var notizia = Notizie (pageid: 0, pageidstoria: 0, pageurl: "", pageurlstoria: "", aggiornato: NSDate(),category: "", date: NSDate(), title: "", image: UIImage(), body: "")
+    var notizia = Notizie (pageid: 0, pageidstoria: 0, pageurl: "", pageurlstoria: "", aggiornato: NSDate(),category: "", date: NSDate(), title: "", image: [UIImage](), body: "")
     
     
     
@@ -59,7 +59,7 @@ class SearchVC: UIViewController, UITableViewDelegate,UITableViewDataSource, UIS
         
         var cell = tableView.dequeueReusableCellWithIdentifier("NewsCell") as CustomCell
         
-        cell.imageBackground.image = notizieSearch[indexPath.row].image
+        cell.imageBackground.image = notizieSearch[indexPath.row].image[0]
         cell.imageBackground.clipsToBounds=true
         
         cell.categoryLabel.text = notizieSearch[indexPath.row].category

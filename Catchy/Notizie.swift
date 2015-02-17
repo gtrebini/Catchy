@@ -11,7 +11,7 @@ import UIKit
 
 class Notizie {
     
-    var image = UIImage()
+    var image = [UIImage]()
     var category = ""
     var date = NSDate()
     var title = ""
@@ -21,7 +21,7 @@ class Notizie {
     var pageurlstoria = ""
     var aggiornato = NSDate()
     
-    init (pageid: Int, pageidstoria: Int, pageurl: String, pageurlstoria: String, aggiornato: NSDate, category: String, date: NSDate, title:String, image: UIImage, body: String){
+    init (pageid: Int, pageidstoria: Int, pageurl: String, pageurlstoria: String, aggiornato: NSDate, category: String, date: NSDate, title:String, image: [UIImage], body: String){
         
         self.image = image
         self.category = category

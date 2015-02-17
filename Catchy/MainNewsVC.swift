@@ -18,7 +18,6 @@ class MainNewsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     var sideBar:SideBar = SideBar()
     
-    @IBOutlet weak var tableViewMainNews: UITableView!
     @IBOutlet weak var todayIsAbout: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var viewSearch: UIView!
@@ -80,7 +79,7 @@ class MainNewsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         var cell = tableView.dequeueReusableCellWithIdentifier("NewsCell") as CustomCell
         
-        cell.imageBackground.image = news2[indexPath.row].image
+        cell.imageBackground.image = news2[indexPath.row].image[0]
         cell.imageBackground.clipsToBounds=true
         
         cell.categoryLabel.text = news2[indexPath.row].category
@@ -100,7 +99,7 @@ class MainNewsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "showItemDetail" {
-            let indexPath:NSIndexPath = self.tableViewMainNews.indexPathForSelectedRow()!
+            let indexPath:NSIndexPath = self.tableView.indexPathForSelectedRow()!
             let detailVC:NotiziaSpecificaVC = segue.destinationViewController as NotiziaSpecificaVC
             detailVC.notizia = news2[indexPath.row] as Notizie
         }

@@ -33,9 +33,13 @@ class JsonDecoder {
         for notiziaDict in json {
             
             var arrayImage: Array<String> = notiziaDict["immagini"] as Array<String>
+            var immagini:[UIImage] = [UIImage]()
             
-            let url = NSURL(string: arrayImage[0] as String )
-            let data = NSData(contentsOfURL: url!)
+            for i in 0...arrayImage.count-1 {
+                let url = NSURL(string: arrayImage[i] as String )
+                let data = NSData(contentsOfURL: url!)
+                immagini.append(UIImage(data: data!)!)
+            }
             
             var topolino: Int = notiziaDict["pageid-storia"] as Int
             var pippo: Int = notiziaDict["pageid"] as Int
@@ -56,7 +60,7 @@ class JsonDecoder {
             
             
             
-            var n = Notizie (pageid: pippo, pageidstoria: topolino, pageurl: minnie, pageurlstoria: pluto, aggiornato: dateFormatter.dateFromString(notiziaDict["aggiornato"] as String) as NSDate!, category: notiziaDict["categoria"] as String, date: dateFormatter.dateFromString(notiziaDict["data"] as String) as NSDate! , title: notiziaDict["title"] as String, image: UIImage(data: data!)!, body: decodedString! as String)
+            var n = Notizie (pageid: pippo, pageidstoria: topolino, pageurl: minnie, pageurlstoria: pluto, aggiornato: dateFormatter.dateFromString(notiziaDict["aggiornato"] as String) as NSDate!, category: notiziaDict["categoria"] as String, date: dateFormatter.dateFromString(notiziaDict["data"] as String) as NSDate! , title: notiziaDict["title"] as String, image: immagini, body: decodedString! as String)
             
             
             
