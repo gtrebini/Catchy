@@ -454,7 +454,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fws-Qs-rLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3181" y="2006"/>
+            <point key="canvasLocation" x="3011" y="2042"/>
         </scene>
         <!--Home-->
         <scene sceneID="sQy-LR-M13">
@@ -952,7 +952,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLV-HG-1tw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3848" y="2828"/>
+            <point key="canvasLocation" x="4474" y="2792"/>
         </scene>
         <!--NotiziaSpecificaVC-->
         <scene sceneID="BwO-va-EpE">
@@ -1248,7 +1248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z0d-hr-IIi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4495" y="2871"/>
+            <point key="canvasLocation" x="3807" y="2792"/>
         </scene>
         <!--NotiziaSpecificaNextVC-->
         <scene sceneID="9PA-iL-H2H">
@@ -1540,11 +1540,12 @@
                         <outlet property="totalView" destination="FzL-I8-dzg" id="Hvg-Hg-Phm"/>
                         <outlet property="viewSwipe" destination="FIq-Cd-Gm8" id="x9v-Z4-lXQ"/>
                         <segue destination="HQd-es-PpB" kind="show" identifier="showTutteleNotizieBack" id="dPj-Rv-eNo"/>
+                        <segue destination="1Ti-3E-Gdd" kind="show" identifier="searchVC3" id="bP7-1F-moN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVT-wI-g9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5107" y="2871"/>
+            <point key="canvasLocation" x="3039" y="2828"/>
         </scene>
         <!--FollowedStoriesVC-->
         <scene sceneID="9Wp-NJ-kU2">
@@ -2060,8 +2061,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="HPC-bK-lG3"/>
-        <segue reference="l6h-Ul-n2G"/>
+        <segue reference="bP7-1F-moN"/>
         <segue reference="dPj-Rv-eNo"/>
-        <segue reference="SOw-g3-Jy2"/>
+        <segue reference="Ut7-H6-CiY"/>
     </inferredMetricsTieBreakers>
 </document>

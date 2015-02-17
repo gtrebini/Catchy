@@ -9,8 +9,8 @@
 import UIKit
 import Foundation
 
-var news = [Notizie]()
-   var notizieSearch = [Notizie]()
+    var news = [Notizie]()
+    var notizieSearch = [Notizie]()
 
 
 class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, SideBarDelegate {

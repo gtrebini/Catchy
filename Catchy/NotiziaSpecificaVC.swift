@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate {
     
@@ -19,6 +20,7 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
     var sideBar:SideBar = SideBar()
     let transitionManager = TransitionManager()
     var isRight:Bool!
+    var actInd:UIActivityIndicatorView!
     
     @IBOutlet weak var searchBar2: UISearchBar!
     @IBOutlet var totalView: UIView!
@@ -38,6 +40,8 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         
         super.viewDidLoad()
         
+        notizieSearch = [Notizie]()
+        
         searchBar2.delegate = self
         notizieAll = Array<Notizie>()
         idNotizie = Array<Int>()
@@ -45,8 +49,6 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         
         sideBar = SideBar(sourceView: self.view)
         sideBar.delegate = self
-        
-        
         
         dateFormatter.dateFormat = "MMM. dd yyyy / HH:mm"
         
@@ -180,6 +182,12 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         if (segue.identifier == "searchVC2") {
             var svc = segue.destinationViewController as SearchVC;
             svc.dataPassed = searchBar2.text
+            svc.countSearch = notizieSearch.count
+            //println(searchBar.text)
+            for n in notizieSearch{
+                println(n.title)
+                svc.notizia = n
+            }
         }
         
     }
@@ -187,7 +195,23 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
     
     
     func searchBarSearchButtonClicked( searchBar: UISearchBar!){
-        searchBar.resignFirstResponder()
+        notizieSearch = [Notizie]()
+        searchBar2.resignFirstResponder()
+        
+        do{
+            
+        }while(news.count==0)
+        
+        for n in news {
+            //println(searchBar2.text)
+            // println(n.title)
+            if (NSString(string: n.title).localizedCaseInsensitiveContainsString(searchBar2.text) || NSString(string: n.body).localizedCaseInsensitiveContainsString(searchBar2.text)){
+                println("OK")
+                notizieSearch.append(n)
+                
+            }
+            println(notizieSearch)
+        }
         self.performSegueWithIdentifier("searchVC2", sender:self)
         
     }

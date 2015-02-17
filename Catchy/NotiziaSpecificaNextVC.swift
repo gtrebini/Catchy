@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDelegate {
     
@@ -19,6 +20,8 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
     var sideBar:SideBar = SideBar()
     let transitionManager = TransitionManager()
     var isRight:Bool!
+    var actInd:UIActivityIndicatorView!
+    
     
     @IBOutlet weak var searchBar2: UISearchBar!
     @IBOutlet var totalView: UIView!
@@ -37,6 +40,9 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        notizieSearch = [Notizie]()
+
         searchBar2.delegate = self
         notizieAll = Array<Notizie>()
         idNotizie = Array<Int>()
@@ -136,20 +142,44 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
    
         }
         
-        if (segue.identifier == "searchVC2") {
+        if (segue.identifier == "searchVC3") {
             var svc = segue.destinationViewController as SearchVC;
             svc.dataPassed = searchBar2.text
+            svc.countSearch = notizieSearch.count
+            //println(searchBar.text)
+            for n in notizieSearch{
+                println(n.title)
+                svc.notizia = n
+            }
+
         }
         
     }
     
     
     func searchBarSearchButtonClicked( searchBar: UISearchBar!){
+        notizieSearch = [Notizie]()
+        searchBar2.resignFirstResponder()
+        do{
+            
+        }while(news.count==0)
         
-        searchBar.resignFirstResponder()
+        for n in news {
+            //println(searchBar2.text)
+            // println(n.title)
+            if (NSString(string: n.title).localizedCaseInsensitiveContainsString(searchBar2.text) || NSString(string: n.body).localizedCaseInsensitiveContainsString(searchBar2.text)){
+                println("OK")
+                notizieSearch.append(n)
+                
+            }
+            println(notizieSearch)
+        }
+
         
         
-        self.performSegueWithIdentifier("searchVC2", sender:self)
+        
+        
+        self.performSegueWithIdentifier("searchVC3", sender:self)
         
     }
     
