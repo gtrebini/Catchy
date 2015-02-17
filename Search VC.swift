@@ -9,13 +9,14 @@
 import UIKit
 import Foundation
 
-class SearchVC: UIViewController, UITableViewDelegate,UISearchBarDelegate, SideBarDelegate {
+class SearchVC: UIViewController, UITableViewDelegate,UITableViewDataSource, UISearchBarDelegate, SideBarDelegate {
     
     
     
     var sideBar:SideBar = SideBar()
     var dataPassed:String!
     var countSearch:Int!
+     var actInd:UIActivityIndicatorView!
     
     @IBOutlet weak var labelA: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -74,6 +75,24 @@ class SearchVC: UIViewController, UITableViewDelegate,UISearchBarDelegate, SideB
         return cell
         
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "showItemDetail2" {
+            /*
+            var actIndDetail:UIActivityIndicatorView = UIActivityIndicatorView()
+            actIndDetail.frame = CGRectMake(self.view.frame.width/2-50 , self.view.frame.height/2, 100, 100)
+            self.view.addSubview(actIndDetail)
+            actIndDetail.hidden = false
+            actIndDetail.startAnimating()
+            */
+            let indexPath:NSIndexPath = self.tableView.indexPathForSelectedRow()!
+            println(indexPath)
+            let detailVC:NotiziaSpecificaVC = segue.destinationViewController as NotiziaSpecificaVC
+            detailVC.notizia = notizieSearch[indexPath.row] as Notizie
+            
+            
+        }
+    }
 
     
     @IBAction func btnSubmit(sender: AnyObject) {
@@ -81,13 +100,7 @@ class SearchVC: UIViewController, UITableViewDelegate,UISearchBarDelegate, SideB
     }
     
     
-   /* override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-      
-        if (segue.identifier == "showFollowedStoriesVC") {
-            var svc = segue.destinationViewController as FollowedStoriesVC;
-            
-        }
-    }*/
+ 
 
    func sideBarDidSelectButtonAtIndex(index: Int) {
         if index == 0{
@@ -117,12 +130,28 @@ class SearchVC: UIViewController, UITableViewDelegate,UISearchBarDelegate, SideB
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        
+        notizieSearch = [Notizie]()
         searchBar.resignFirstResponder()
-        
         labelA.text = searchBar.text
     
+        do{
+            
+        }while(news.count==0)
+        
+        for n in news {
+            //println(searchBar2.text)
+            // println(n.title)
+            if (NSString(string: n.title).localizedCaseInsensitiveContainsString(searchBar.text) || NSString(string: n.body).localizedCaseInsensitiveContainsString(searchBar.text)){
+                println("OK")
+                notizieSearch.append(n)
+                
+            }
+            println(notizieSearch)
+        }
+        
+       
     }
+
     
     
  

@@ -404,6 +404,7 @@
                                             <outlet property="dateLabel" destination="l0c-gm-B9c" id="bYT-4W-fDa"/>
                                             <outlet property="imageBackground" destination="jPr-Pp-F4Z" id="Y1Z-yP-4yk"/>
                                             <outlet property="titleLabel" destination="hys-zP-oPA" id="b6b-Zi-luX"/>
+                                            <segue destination="HQd-es-PpB" kind="show" identifier="showItemDetail2" id="AMd-TO-V0J"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -448,13 +449,14 @@
                     <connections>
                         <outlet property="labelA" destination="7gE-ug-hCz" id="iWz-cc-QOc"/>
                         <outlet property="searchBar" destination="Bgl-pz-gst" id="1og-05-dxT"/>
+                        <outlet property="tableView" destination="fUS-sB-TG1" id="E2W-wR-k6a"/>
                         <outlet property="totalView" destination="A8o-Ie-qbO" id="e5Z-ns-arY"/>
                         <outlet property="viewSearch" destination="Wd3-A0-QyL" id="sql-oA-AUq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fws-Qs-rLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3011" y="2042"/>
+            <point key="canvasLocation" x="3186" y="2006"/>
         </scene>
         <!--Home-->
         <scene sceneID="sQy-LR-M13">
@@ -709,7 +711,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ne0-L1-PHL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3888" y="2006"/>
+            <point key="canvasLocation" x="3888" y="1950"/>
         </scene>
         <!--Main News-->
         <scene sceneID="6CN-tf-3VJ">
@@ -952,7 +954,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLV-HG-1tw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4474" y="2792"/>
+            <point key="canvasLocation" x="3076" y="2882"/>
         </scene>
         <!--NotiziaSpecificaVC-->
         <scene sceneID="BwO-va-EpE">
@@ -1248,7 +1250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z0d-hr-IIi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3807" y="2792"/>
+            <point key="canvasLocation" x="4590" y="2006"/>
         </scene>
         <!--NotiziaSpecificaNextVC-->
         <scene sceneID="9PA-iL-H2H">
@@ -1545,7 +1547,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVT-wI-g9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3039" y="2828"/>
+            <point key="canvasLocation" x="5299" y="2006"/>
         </scene>
         <!--FollowedStoriesVC-->
         <scene sceneID="9Wp-NJ-kU2">
@@ -1567,7 +1569,61 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ydc-M3-TR9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5527" y="2218"/>
+            <point key="canvasLocation" x="2287" y="2882"/>
+        </scene>
+        <!--Customize Topics-->
+        <scene sceneID="csV-tm-9eI">
+            <objects>
+                <viewController title="Customize Topics" id="Kis-Xc-H8L" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mjq-0Q-GC1"/>
+                        <viewControllerLayoutGuide type="bottom" id="X9h-Eh-gWr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8PM-YT-3RK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1gO-4Y-ggB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3888" y="2882"/>
+        </scene>
+        <!--FAQS&Help-->
+        <scene sceneID="dTr-zY-l7b">
+            <objects>
+                <viewController title="FAQS&amp;Help" id="kgi-l1-d22" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Abx-oV-gth"/>
+                        <viewControllerLayoutGuide type="bottom" id="ioS-tI-x69"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wkd-VS-jSA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="roz-Qx-7EC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4590" y="2882"/>
+        </scene>
+        <!--Options-->
+        <scene sceneID="aBO-18-6BN">
+            <objects>
+                <viewController title="Options" id="GRO-32-Mxi" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="f7O-4n-kug"/>
+                        <viewControllerLayoutGuide type="bottom" id="WSf-my-Evw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ltT-2R-VsP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vF9-Vm-FgU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5299" y="2882"/>
         </scene>
         <!--Sign UpVC-->
         <scene sceneID="STn-mv-bFP">
@@ -2061,8 +2117,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="HPC-bK-lG3"/>
-        <segue reference="bP7-1F-moN"/>
-        <segue reference="dPj-Rv-eNo"/>
-        <segue reference="Ut7-H6-CiY"/>
+        <segue reference="32v-VR-j1B"/>
+        <segue reference="5Co-1F-nqY"/>
+        <segue reference="7SW-9i-EYA"/>
     </inferredMetricsTieBreakers>
 </document>
