@@ -152,9 +152,9 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
             var svc = segue.destinationViewController as SearchVC;
             svc.dataPassed = searchBar2.text
             svc.countSearch = notizieSearch.count
-            //println(searchBar.text)
+           
             for n in notizieSearch{
-                println(n.title)
+               
                 svc.notizia = n
             }
 
@@ -171,14 +171,13 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
         }while(news.count==0)
         
         for n in news {
-            //println(searchBar2.text)
-            // println(n.title)
+           
             if (NSString(string: n.title).localizedCaseInsensitiveContainsString(searchBar2.text) || NSString(string: n.body).localizedCaseInsensitiveContainsString(searchBar2.text)){
                 println("OK")
                 notizieSearch.append(n)
                 
             }
-            println(notizieSearch)
+         
         }
 
         
@@ -237,7 +236,7 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
                     var vc:NotiziaSpecificaVC = NotiziaSpecificaVC()
                     notiziaCorrente = tuttelenotizie[indexCorrente!-1]
                     performSegueWithIdentifier("showTutteleNotizieBack", sender: self)
-                    println(tuttelenotizie[indexCorrente!-1].title)
+                 
                     
                 }
                 else {
@@ -259,7 +258,7 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
                     notiziaCorrente = tuttelenotizie[indexCorrente!+1]
                
                     performSegueWithIdentifier("showTutteleNotizieBack", sender: self)
-                    println(tuttelenotizie[indexCorrente!+1].title)
+                   
                 }else{
                     println("Non ci sono notizie precedenti")
                 }
@@ -281,7 +280,6 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
                     
                 }while(tuttelenotizie == nil)
                 var imageNext:UIImage = immaginiNotiziaCorrente[immaginiIndexCorrente!-1]
-                println(immaginiIndexCorrente-1)
                 if  immaginiIndexCorrente!-1 >= 0  && immaginiNotiziaCorrente[immaginiIndexCorrente!-1] !== nil{
                     image2.image = immaginiNotiziaCorrente[immaginiIndexCorrente!-1]
                     immaginiIndexCorrente = immaginiIndexCorrente-1
@@ -301,7 +299,7 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
                     
                 }while(tuttelenotizie == nil)
                 var imageNext:UIImage = immaginiNotiziaCorrente[immaginiIndexCorrente!+1]
-                println(immaginiIndexCorrente+1)
+    
                 if immaginiIndexCorrente!+1 < immaginiNotiziaCorrente.count && immaginiNotiziaCorrente[immaginiIndexCorrente!+1] !== nil{
                     image2.image = immaginiNotiziaCorrente[immaginiIndexCorrente!+1]
                     immaginiIndexCorrente = immaginiIndexCorrente+1
