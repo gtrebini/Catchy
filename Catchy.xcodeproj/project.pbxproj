@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2933E2FE1A94A127000343BE /* followed_themes_tab_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 2933E2FC1A94A127000343BE /* followed_themes_tab_off.png */; };
+		2933E2FF1A94A127000343BE /* followed_themes_tab_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 2933E2FD1A94A127000343BE /* followed_themes_tab_on.png */; };
+		2933E3011A94A251000343BE /* CustomizeTopicsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2933E3001A94A251000343BE /* CustomizeTopicsVC.swift */; };
+		2933E3031A94A539000343BE /* CustomCellTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2933E3021A94A539000343BE /* CustomCellTopic.swift */; };
 		296FD8551A9240FB00E1FBF6 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FD8541A9240FB00E1FBF6 /* TransitionManager.swift */; };
 		5916B1611A6D02A60015DDAC /* bracket_gray.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5916B1501A6D02A60015DDAC /* bracket_gray.pdf */; };
 		5916B1621A6D02A60015DDAC /* bracket_green.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5916B1511A6D02A60015DDAC /* bracket_green.pdf */; };
@@ -92,6 +96,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2933E2FC1A94A127000343BE /* followed_themes_tab_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = followed_themes_tab_off.png; sourceTree = "<group>"; };
+		2933E2FD1A94A127000343BE /* followed_themes_tab_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = followed_themes_tab_on.png; sourceTree = "<group>"; };
+		2933E3001A94A251000343BE /* CustomizeTopicsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizeTopicsVC.swift; sourceTree = "<group>"; };
+		2933E3021A94A539000343BE /* CustomCellTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellTopic.swift; sourceTree = "<group>"; };
 		296FD8541A9240FB00E1FBF6 /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		5916B1501A6D02A60015DDAC /* bracket_gray.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = bracket_gray.pdf; sourceTree = "<group>"; };
 		5916B1511A6D02A60015DDAC /* bracket_green.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = bracket_green.pdf; sourceTree = "<group>"; };
@@ -216,6 +224,8 @@
 				5979FDBD1A7FD9C100584856 /* Oswald-Regular.ttf */,
 				59FD43F51A8B886100A4F7B5 /* followed.png */,
 				59FD43F61A8B886100A4F7B5 /* unfollowed.png */,
+				2933E2FC1A94A127000343BE /* followed_themes_tab_off.png */,
+				2933E2FD1A94A127000343BE /* followed_themes_tab_on.png */,
 			);
 			name = Immagini;
 			sourceTree = "<group>";
@@ -233,6 +243,9 @@
 			isa = PBXGroup;
 			children = (
 				595C3DF51A84FE6B00F5BB19 /* FollowedStoriesVC.swift */,
+				59A10DF31A8A02DE00DE0000 /* MainNewsVC.swift */,
+				2933E3001A94A251000343BE /* CustomizeTopicsVC.swift */,
+				2933E3021A94A539000343BE /* CustomCellTopic.swift */,
 			);
 			name = Impostazioni;
 			sourceTree = "<group>";
@@ -272,14 +285,6 @@
 				59994B3C1A5FE1020001B7C4 /* AccessoVC.swift */,
 			);
 			name = Accesso;
-			sourceTree = "<group>";
-		};
-		59A10DF21A8A022000DE0000 /* MainStory */ = {
-			isa = PBXGroup;
-			children = (
-				59A10DF31A8A02DE00DE0000 /* MainNewsVC.swift */,
-			);
-			name = MainStory;
 			sourceTree = "<group>";
 		};
 		59BB42CC1A8E38B5002E5581 /* immagini N */ = {
@@ -342,7 +347,6 @@
 				59903B4C1A8CA42600E436E9 /* NotiziaSpecificaNext */,
 				59E3260D1A6E97EC00CB2B65 /* Search */,
 				59994B351A5FD0790001B7C4 /* Home */,
-				59A10DF21A8A022000DE0000 /* MainStory */,
 				595C3DF41A84FE1300F5BB19 /* Impostazioni */,
 				59C0BA901A5E972800A4E0E9 /* Main.storyboard */,
 				59C0BA931A5E972800A4E0E9 /* Images.xcassets */,
@@ -550,10 +554,12 @@
 				5916B1661A6D02A60015DDAC /* followed.pdf in Resources */,
 				5916B1611A6D02A60015DDAC /* bracket_gray.pdf in Resources */,
 				5916B1751A6D28980015DDAC /* catchy_logo copia.pdf in Resources */,
+				2933E2FF1A94A127000343BE /* followed_themes_tab_on.png in Resources */,
 				59BB42E71A8E3937002E5581 /* ico_tw_N.pdf in Resources */,
 				59BB42F31A8E3A0A002E5581 /* popup_button_off.png in Resources */,
 				59C0BAAE1A5E9D8900A4E0E9 /* iphone5-sfondo3.jpg in Resources */,
 				5916B1631A6D02A60015DDAC /* catchy_logo.pdf in Resources */,
+				2933E2FE1A94A127000343BE /* followed_themes_tab_off.png in Resources */,
 				5979FDBE1A7FD9C600584856 /* Oswald-Regular.ttf in Resources */,
 				59BB42F61A8E3A0A002E5581 /* whale_black.png in Resources */,
 			);
@@ -574,6 +580,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				296FD8551A9240FB00E1FBF6 /* TransitionManager.swift in Sources */,
+				2933E3011A94A251000343BE /* CustomizeTopicsVC.swift in Sources */,
 				59903B4E1A8CA44000E436E9 /* NotiziaSpecificaNextVC.swift in Sources */,
 				595C3DF61A84FE6B00F5BB19 /* FollowedStoriesVC.swift in Sources */,
 				598A3FB01A82609700A0D7F0 /* SideBarTableViewController.swift in Sources */,
@@ -582,6 +589,7 @@
 				59E3260F1A6E980200CB2B65 /* Search VC.swift in Sources */,
 				59EDDCB11A63EBA300700539 /* HomeVC.swift in Sources */,
 				59C0BAB11A5EA61C00A4E0E9 /* TutorialVC.swift in Sources */,
+				2933E3031A94A539000343BE /* CustomCellTopic.swift in Sources */,
 				59C0BA8F1A5E972800A4E0E9 /* SchermataInizialeVC.swift in Sources */,
 				5930BBF51A64278600B2626C /* CustomCell.swift in Sources */,
 				59C0BA8D1A5E972800A4E0E9 /* AppDelegate.swift in Sources */,

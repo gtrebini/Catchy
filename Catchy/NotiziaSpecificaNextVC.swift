@@ -127,7 +127,9 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
             let detailVC:NotiziaSpecificaVC = segue.destinationViewController as NotiziaSpecificaVC
             detailVC.notizia = notiziaCorrente as Notizie
             detailVC.tuttelenotizie = tuttelenotizie
-            detailVC.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
+            
+            
+          detailVC.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
             if(isRight==true){
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
                     self.view.frame = CGRectOffset(self.view.frame, -UIScreen.mainScreen().bounds.width, 0.0)
@@ -141,6 +143,8 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
 
                 })
             }
+            
+           
    
         }
         

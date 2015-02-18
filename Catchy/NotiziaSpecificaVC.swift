@@ -131,7 +131,6 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         
         var swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
-       
         self.viewSwipe.addGestureRecognizer(swipeLeft)
         
         
@@ -184,7 +183,9 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
             let detailVC:NotiziaSpecificanextVC = segue.destinationViewController as NotiziaSpecificanextVC
             detailVC.notizia = notiziaCorrente as Notizie
             detailVC.tuttelenotizie = tuttelenotizie
-            detailVC.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
+            
+            
+           detailVC.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
             if(isRight==true){
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.view.frame = CGRectOffset(self.view.frame, -UIScreen.mainScreen().bounds.width, 0.0)
@@ -199,6 +200,8 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
                 })
             }
             
+            
+         
         }
         
         
@@ -246,6 +249,15 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
             self.performSegueWithIdentifier("showFollowedStoriesVC", sender:self)
             
         }
+        if index == 1{
+            
+            self.performSegueWithIdentifier("showMainNewsVC", sender:self)
+        }
+        
+        if index == 2{
+            
+            self.performSegueWithIdentifier("showCustomizeTopicsVC", sender:self)
+        }
         
     }
     
@@ -270,6 +282,8 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
                     
                         performSegueWithIdentifier("showTutteleNotizie", sender: self)
                         println(tuttelenotizie[indexCorrente!-1].title)
+                        
+                        
                     
                     }
                         else {
@@ -291,6 +305,9 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
                     
                         performSegueWithIdentifier("showTutteleNotizie", sender: self)
                         println(tuttelenotizie[indexCorrente!+1].title)
+                        
+                       
+                        
                     }else{
                         println("Non ci sono notizie precedenti")
                     }
