@@ -42,7 +42,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         
         //dichiarar in tutte le opzioni
         sideBar = SideBar(sourceView: self.view)
-        
+        sideBar.delegate = self
         todayIsAbout.font = UIFont (name: "PlayfairDisplay-Italic", size: 18)
         searchBar.delegate = self
         
@@ -148,7 +148,27 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     
     func sideBarDidSelectButtonAtIndex(index: Int){
         if index == 0{
-            //cosa voglio fare premendo il primo bottone
+            self.performSegueWithIdentifier("showFollowedStoriesVC", sender:self)
+            
+        }
+        if index == 1{
+            
+            self.performSegueWithIdentifier("showMainNewsVC", sender:self)
+        }
+        
+        if index == 2{
+            
+            self.performSegueWithIdentifier("showCustomizeTopicsVC", sender:self)
+        }
+        
+        if index == 3{
+            
+            self.performSegueWithIdentifier("showFAQS&HelpVC", sender:self)
+        }
+        
+        if index == 4{
+            
+            self.performSegueWithIdentifier("showOptionsVC", sender:self)
         }
         
     }
@@ -199,4 +219,21 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         // Dispose of any resources that can be recreated.
     }
     
+}
+
+extension String {
+    init (htmlEncodedString: String){
+        let encodedData = htmlEncodedString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        let attributedOptions = [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType]
+        var attributeString:NSAttributedString!
+        dispatch_async(dispatch_get_main_queue(),{
+                 attributeString = NSAttributedString (data: encodedData!, options: attributedOptions, documentAttributes: nil, error: nil)!
+        })
+
+        do{
+            
+        }while(attributeString == nil)
+        
+        self.init(attributeString.string)
+    }
 }

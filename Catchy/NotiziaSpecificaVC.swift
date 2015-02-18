@@ -108,8 +108,9 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
             
         }
         
+       
         do{
-            
+            println(tuttelenotizie)
            
         }while(tuttelenotizie == nil)
         
@@ -257,6 +258,16 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         if index == 2{
             
             self.performSegueWithIdentifier("showCustomizeTopicsVC", sender:self)
+        }
+        
+        if index == 3{
+            
+            self.performSegueWithIdentifier("showFAQS&HelpVC", sender:self)
+        }
+        
+        if index == 4{
+            
+            self.performSegueWithIdentifier("showOptionsVC", sender:self)
         }
         
     }

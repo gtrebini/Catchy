@@ -33,16 +33,11 @@ class FollowedStoriesVC: UIViewController, UITableViewDelegate, UITableViewDataS
         super.viewDidLoad()
         
         notizieSearch = [Notizie]()
-        
-        actInd = UIActivityIndicatorView()
-        actInd.frame = CGRectMake(self.view.frame.width/2-50 , self.view.frame.height/2, 100, 100)
-        self.view.addSubview(actInd)
-        actInd.hidden = false
-        actInd.startAnimating()
+     
         
         //dichiarar in tutte le opzioni
         sideBar = SideBar(sourceView: self.view)
-        
+        sideBar.delegate = self
         todayIsAbout.font = UIFont (name: "PlayfairDisplay-Italic", size: 18)
         searchBar.delegate = self
         
@@ -100,8 +95,7 @@ class FollowedStoriesVC: UIViewController, UITableViewDelegate, UITableViewDataS
         cell.titleLabel.text = news[indexPath.row].title.uppercaseString
         cell.titleLabel.font = UIFont (name: "Oswald-Regular", size: 18)
         
-        actInd.stopAnimating()
-        actInd.hidesWhenStopped = true
+        
         
         
         return cell
@@ -148,7 +142,30 @@ class FollowedStoriesVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func sideBarDidSelectButtonAtIndex(index: Int){
         if index == 0{
-            //cosa voglio fare premendo il primo bottone
+           var storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            var vc:FollowedStoriesVC = storyboard.instantiateViewControllerWithIdentifier("FollowedStoriesVC") as FollowedStoriesVC
+            navigationController?.pushViewController(vc, animated: true)
+            
+            
+        }
+        if index == 1{
+            
+            self.performSegueWithIdentifier("showMainNewsVC", sender:self)
+        }
+        
+        if index == 2{
+            
+            self.performSegueWithIdentifier("showCustomizeTopicsVC", sender:self)
+        }
+        
+        if index == 3{
+            
+            self.performSegueWithIdentifier("showFAQS&HelpVC", sender:self)
+        }
+        
+        if index == 4{
+            
+            self.performSegueWithIdentifier("showOptionsVC", sender:self)
         }
         
     }

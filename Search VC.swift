@@ -103,13 +103,31 @@ class SearchVC: UIViewController, UITableViewDelegate,UITableViewDataSource, UIS
  
 
    func sideBarDidSelectButtonAtIndex(index: Int) {
-        if index == 0{
-         
-           
-            
-        }
+    if index == 0{
+        self.performSegueWithIdentifier("showFollowedStoriesVC", sender:self)
+        
+    }
+    if index == 1{
+        
+        self.performSegueWithIdentifier("showMainNewsVC", sender:self)
     }
     
+    if index == 2{
+        
+        self.performSegueWithIdentifier("showCustomizeTopicsVC", sender:self)
+    }
+    
+    if index == 3{
+        
+        self.performSegueWithIdentifier("showFAQS&HelpVC", sender:self)
+    }
+    
+    if index == 4{
+        
+        self.performSegueWithIdentifier("showOptionsVC", sender:self)
+    }
+    
+    }
     
     @IBAction func searchButton(sender: AnyObject) {
         UIView.animateWithDuration(0.2, delay: 0.1, options: .CurveEaseOut, animations: {

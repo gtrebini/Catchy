@@ -195,6 +195,25 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
             self.performSegueWithIdentifier("showFollowedStoriesVC", sender:self)
             
         }
+        if index == 1{
+            
+            self.performSegueWithIdentifier("showMainNewsVC", sender:self)
+        }
+        
+        if index == 2{
+            
+            self.performSegueWithIdentifier("showCustomizeTopicsVC", sender:self)
+        }
+        
+        if index == 3{
+            
+            self.performSegueWithIdentifier("showFAQS&HelpVC", sender:self)
+        }
+        
+        if index == 4{
+            
+            self.performSegueWithIdentifier("showOptionsVC", sender:self)
+        }
         
     }
     

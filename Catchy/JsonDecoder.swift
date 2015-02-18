@@ -48,19 +48,16 @@ class JsonDecoder {
             
             
             var encodedString = notiziaDict["body"] as String
+            let encodedData = encodedString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+            var decodedString = NSString(data: encodedData!, encoding: NSUTF8StringEncoding)
+            
+            var encodeTitle = notiziaDict["title"] as String
+            let encodedDataTitle = encodeTitle.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+            var decodeTitle = NSString(data: encodedDataTitle!, encoding: NSUTF8StringEncoding)
+            var newTitle = decodeTitle?.stringByReplacingOccurrencesOfString("&#039;", withString: "'")
             
             
-            let encodedData = encodedString.dataUsingEncoding(NSUTF8StringEncoding)!
-            let attributedOptions = [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType]
-            
-            
-            let attributedString = NSAttributedString(data: encodedData, options: nil, documentAttributes: nil, error: nil)
-            
-            var decodedString = attributedString?.string
-            
-            
-            
-            var n = Notizie (pageid: pippo, pageidstoria: topolino, pageurl: minnie, pageurlstoria: pluto, aggiornato: dateFormatter.dateFromString(notiziaDict["aggiornato"] as String) as NSDate!, category: notiziaDict["categoria"] as String, date: dateFormatter.dateFromString(notiziaDict["data"] as String) as NSDate! , title: notiziaDict["title"] as String, image: immagini, body: decodedString! as String)
+            var n = Notizie (pageid: pippo, pageidstoria: topolino, pageurl: minnie, pageurlstoria: pluto, aggiornato: dateFormatter.dateFromString(notiziaDict["aggiornato"] as String) as NSDate!, category: notiziaDict["categoria"] as String, date: dateFormatter.dateFromString(notiziaDict["data"] as String) as NSDate! , title: newTitle!, image: immagini, body: decodedString!)
             
             
             
