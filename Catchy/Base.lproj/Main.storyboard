@@ -212,7 +212,7 @@
         <!--SearchVC-->
         <scene sceneID="CDC-m6-xbs">
             <objects>
-                <viewController id="1Ti-3E-Gdd" customClass="SearchVC" customModule="Catchy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1Ti-3E-Gdd" customClass="SearchVC" customModule="Catchy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lBc-Gg-pe8"/>
                         <viewControllerLayoutGuide type="bottom" id="I3U-vk-Pzp"/>
@@ -246,6 +246,9 @@
                                             <constraint firstAttribute="width" constant="164" id="PQF-mv-ZZW"/>
                                         </constraints>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="1Ti-3E-Gdd" id="jfR-Ep-IFK"/>
+                                        </connections>
                                     </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xkp-T8-VjM">
                                         <rect key="frame" x="285" y="70" width="30" height="30"/>
@@ -2517,14 +2520,14 @@
         <image name="whale_black.png" width="336" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="k3y-qF-CpS"/>
-        <segue reference="DTn-gI-wgR"/>
-        <segue reference="GUz-SW-kAo"/>
-        <segue reference="mi1-yc-CXJ"/>
-        <segue reference="gd2-GJ-VBY"/>
-        <segue reference="92l-Xl-65Y"/>
-        <segue reference="ebz-IU-dWA"/>
-        <segue reference="32v-VR-j1B"/>
         <segue reference="HPC-bK-lG3"/>
+        <segue reference="4tj-3r-A33"/>
+        <segue reference="gd2-GJ-VBY"/>
+        <segue reference="0MZ-f6-gkc"/>
+        <segue reference="SOw-g3-Jy2"/>
+        <segue reference="GWY-f5-g2o"/>
+        <segue reference="Odw-IT-j9H"/>
+        <segue reference="AMd-TO-V0J"/>
+        <segue reference="OO0-3N-WKx"/>
     </inferredMetricsTieBreakers>
 </document>

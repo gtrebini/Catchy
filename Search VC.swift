@@ -58,7 +58,10 @@ class SearchVC: UIViewController, UITableViewDelegate,UITableViewDataSource, UIS
         
         
         var cell = tableView.dequeueReusableCellWithIdentifier("NewsCell") as CustomCell
-        
+       
+        println(notizieSearch)
+        println(notizieSearch.count)
+        println(indexPath.row)
         cell.imageBackground.image = notizieSearch[indexPath.row].image[0]
         cell.imageBackground.clipsToBounds=true
         
@@ -148,8 +151,14 @@ class SearchVC: UIViewController, UITableViewDelegate,UITableViewDataSource, UIS
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        notizieSearch = [Notizie]()
+       
         searchBar.resignFirstResponder()
+        var storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        var vc:SearchVC = storyboard.instantiateViewControllerWithIdentifier("SearchVC") as SearchVC
+    
+        
+        notizieSearch = [Notizie]()
+       
         labelA.text = searchBar.text
     
         do{
@@ -167,7 +176,12 @@ class SearchVC: UIViewController, UITableViewDelegate,UITableViewDataSource, UIS
             println(notizieSearch)
         }
         
-       
+        for n in notizieSearch {
+            vc.notizia = n
+        }
+        vc.dataPassed = searchBar.text
+        vc.countSearch = notizieSearch.count
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     
