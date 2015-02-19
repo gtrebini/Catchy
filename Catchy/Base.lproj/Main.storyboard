@@ -1270,6 +1270,7 @@
                         <outlet property="image2" destination="VzY-Cg-cxf" id="YNw-Ih-rWZ"/>
                         <outlet property="searchBar2" destination="elZ-hB-9cP" id="fbc-wU-bXR"/>
                         <outlet property="source2Label" destination="kpc-Jq-1vd" id="wA4-8e-kZg"/>
+                        <outlet property="storiaTitolo" destination="a2F-Jk-auu" id="dTL-FU-rAG"/>
                         <outlet property="titolo2Label" destination="iAm-lc-Uiv" id="k1M-mt-jZw"/>
                         <outlet property="totalView" destination="Xoz-Sr-0gf" id="39s-na-bbq"/>
                         <outlet property="viewSwipe" destination="ceh-pm-2YD" id="nzs-3A-Xsr"/>
@@ -1577,6 +1578,7 @@
                         <outlet property="image2" destination="DyS-1m-1BI" id="nB3-qu-xcu"/>
                         <outlet property="searchBar2" destination="gQS-TP-pzf" id="2ob-nY-rqB"/>
                         <outlet property="source2Label" destination="4xo-g1-zPT" id="BOm-ca-EVy"/>
+                        <outlet property="storiaTitolo" destination="brG-CF-Ma3" id="ad2-9h-Hvv"/>
                         <outlet property="titolo2Label" destination="m8W-AZ-GlX" id="2WZ-a0-jGd"/>
                         <outlet property="totalView" destination="FzL-I8-dzg" id="Hvg-Hg-Phm"/>
                         <outlet property="viewSwipe" destination="FIq-Cd-Gm8" id="x9v-Z4-lXQ"/>
@@ -2520,14 +2522,14 @@
         <image name="whale_black.png" width="336" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="WNI-dB-Zn5"/>
+        <segue reference="dPj-Rv-eNo"/>
+        <segue reference="bWk-WH-4Yl"/>
+        <segue reference="bP7-1F-moN"/>
+        <segue reference="ecf-Ge-Bh1"/>
+        <segue reference="Ut7-H6-CiY"/>
+        <segue reference="FGR-mO-jUV"/>
+        <segue reference="U8o-SM-G61"/>
         <segue reference="HPC-bK-lG3"/>
-        <segue reference="4tj-3r-A33"/>
-        <segue reference="gd2-GJ-VBY"/>
-        <segue reference="0MZ-f6-gkc"/>
-        <segue reference="SOw-g3-Jy2"/>
-        <segue reference="GWY-f5-g2o"/>
-        <segue reference="Odw-IT-j9H"/>
-        <segue reference="AMd-TO-V0J"/>
-        <segue reference="OO0-3N-WKx"/>
     </inferredMetricsTieBreakers>
 </document>

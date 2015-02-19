@@ -20,8 +20,9 @@ class Notizie {
     var pageidstoria = 0
     var pageurlstoria = ""
     var aggiornato = NSDate()
+    var titlestoria = ""
     
-    init (pageid: Int, pageidstoria: Int, pageurl: String, pageurlstoria: String, aggiornato: NSDate, category: String, date: NSDate, title:String, image: [UIImage], body: String){
+    init (pageid: Int, pageidstoria: Int, pageurl: String, pageurlstoria: String, titlestoria: String, aggiornato: NSDate, category: String, date: NSDate, title:String, image: [UIImage], body: String){
         
         self.image = image
         self.category = category
@@ -32,6 +33,7 @@ class Notizie {
         self.pageidstoria = pageidstoria
         self.pageurlstoria = pageurlstoria
         self.aggiornato = aggiornato
+        self.titlestoria = titlestoria
         
     }
     

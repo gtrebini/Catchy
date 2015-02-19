@@ -47,6 +47,7 @@ class JsonDecoder {
             var pluto: String = notiziaDict["pageurl-storia"] as String
             
             
+            
             var encodedString = notiziaDict["body"] as String
             let encodedData = encodedString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
             var decodedString = NSString(data: encodedData!, encoding: NSUTF8StringEncoding)
@@ -57,7 +58,15 @@ class JsonDecoder {
             var newTitle = decodeTitle?.stringByReplacingOccurrencesOfString("&#039;", withString: "'")
             
             
-            var n = Notizie (pageid: pippo, pageidstoria: topolino, pageurl: minnie, pageurlstoria: pluto, aggiornato: dateFormatter.dateFromString(notiziaDict["aggiornato"] as String) as NSDate!, category: notiziaDict["categoria"] as String, date: dateFormatter.dateFromString(notiziaDict["data"] as String) as NSDate! , title: newTitle!, image: immagini, body: decodedString!)
+            var encodeTitleStory = notiziaDict["title-storia"] as String
+           
+            
+            let encodedDataTitleStory = encodeTitleStory.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+            var decodeTitleStory = NSString(data: encodedDataTitleStory!, encoding: NSUTF8StringEncoding)
+            var newTitleStory = decodeTitleStory?.stringByReplacingOccurrencesOfString("&#039;", withString: "'")
+            
+            
+            var n = Notizie (pageid: pippo, pageidstoria: topolino, pageurl: minnie, pageurlstoria: pluto, titlestoria: newTitleStory!, aggiornato: dateFormatter.dateFromString(notiziaDict["aggiornato"] as String) as NSDate!, category: notiziaDict["categoria"] as String, date: dateFormatter.dateFromString(notiziaDict["data"] as String) as NSDate!, title: newTitle!, image: immagini, body: decodedString!)
             
             
             

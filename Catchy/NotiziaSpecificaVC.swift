@@ -35,9 +35,10 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
     @IBOutlet weak var body2: UILabel!
     @IBOutlet weak var followStory2: UILabel!
     @IBOutlet weak var viewSwipe: UIView!
+    @IBOutlet var storiaTitolo: UILabel!
     
     
-    var notizia = Notizie (pageid: 0, pageidstoria: 0, pageurl: "", pageurlstoria: "", aggiornato: NSDate(),category: "", date: NSDate(), title: "", image: [UIImage](), body: "")
+    var notizia = Notizie (pageid: 0, pageidstoria: 0, pageurl: "", pageurlstoria: "", titlestoria: "", aggiornato: NSDate(),category: "", date: NSDate(), title: "", image: [UIImage](), body: "")
     
     
     override func viewDidLoad() {
@@ -55,6 +56,9 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         sideBar.delegate = self
         
         dateFormatter.dateFormat = "MMM. dd yyyy / HH:mm"
+        
+        storiaTitolo.text = notizia.titlestoria
+        storiaTitolo.font = UIFont (name: "PlayfairDisplay-Italic", size: 18)
         
         image2.image = notizia.image[0]
         image2.clipsToBounds=true
