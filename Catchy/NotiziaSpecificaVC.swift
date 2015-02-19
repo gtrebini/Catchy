@@ -202,11 +202,11 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
                 detailVC.view.frame = CGRectOffset(detailVC.view.frame, -UIScreen.mainScreen().bounds.width, 0.0)
             })
             }else if(isRight==false){
-                UIView.animateWithDuration(0.5, animations: { () -> Void in
+             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 
-                    self.view.frame = CGRectOffset(detailVC.view.frame, UIScreen.mainScreen().bounds.width, 0.0)
-                    detailVC.view.frame = CGRectOffset(self.view.frame, UIScreen.mainScreen().bounds.width, 0.0)
-                    
+                self.view.frame = CGRectOffset(self.view.frame, UIScreen.mainScreen().bounds.width, 0.0)
+                detailVC.view.frame = CGRectOffset(detailVC.view.frame, 0.0, 0.0)
+                
                 })
             }
             
