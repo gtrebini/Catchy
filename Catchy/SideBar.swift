@@ -43,7 +43,10 @@ class SideBar: NSObject, SideBarTableViewControllerDelegate {
             sideBarContainerView.hidden = true
         }
         
-        
+        if isSideBarOpen == true {
+            
+            sideBarContainerView.hidden = false
+        }
         originView = sourceView
         sideBarTableViewController.tableData = ["Storie seguite", "Storie principali", "Personalizza", "FAQS&Help", "Opzioni"]
         
@@ -105,10 +108,10 @@ class SideBar: NSObject, SideBarTableViewControllerDelegate {
             gravityBehavior.gravityDirection = CGVectorMake(gravityX, 0)
             animator.addBehavior(gravityBehavior)
             
-            let collisionBEhavior:UICollisionBehavior = UICollisionBehavior(items: [sideBarContainerView])
-            collisionBEhavior.addBoundaryWithIdentifier("sideBarBoundary", fromPoint: CGPointMake(boundaryX, 20), toPoint: CGPointMake(boundaryX, originView.frame.size.height))
+            let collisionBehavior:UICollisionBehavior = UICollisionBehavior(items: [sideBarContainerView])
+            collisionBehavior.addBoundaryWithIdentifier("sideBarBoundary", fromPoint: CGPointMake(boundaryX, 20), toPoint: CGPointMake(boundaryX, originView.frame.size.height))
             
-            animator.addBehavior(collisionBEhavior)
+            animator.addBehavior(collisionBehavior)
             
             let pushBehavior:UIPushBehavior = UIPushBehavior(items: [sideBarContainerView], mode: UIPushBehaviorMode.Instantaneous)
             pushBehavior.magnitude = magnitude
@@ -118,6 +121,8 @@ class SideBar: NSObject, SideBarTableViewControllerDelegate {
             let sideBarBehavior:UIDynamicItemBehavior = UIDynamicItemBehavior(items: [sideBarContainerView])
             sideBarBehavior.elasticity = 0.3
             animator.addBehavior(sideBarBehavior)
+                
+                
             
         
             

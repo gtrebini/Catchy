@@ -159,6 +159,10 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
     @IBAction func btnSubmit(sender: AnyObject) {
         
         sideBar.showSideBar(!sideBar.isSideBarOpen)
+        if  sideBar.isSideBarOpen == false{
+            
+            sideBar.sideBarContainerView.hidden = true
+        }
     }
     
     
@@ -251,30 +255,38 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
     
     func sideBarDidSelectButtonAtIndex(index: Int){
         if index == 0{
+            sideBar.sideBarContainerView.hidden = true
+            sideBar.showSideBar(false)
             self.performSegueWithIdentifier("showFollowedStoriesVC", sender:self)
             
         }
         if index == 1{
-            
+            sideBar.sideBarContainerView.hidden = true
+            sideBar.showSideBar(false)
             self.performSegueWithIdentifier("showMainNewsVC", sender:self)
         }
         
         if index == 2{
             
+            sideBar.sideBarContainerView.hidden = true
+            sideBar.showSideBar(false)
             self.performSegueWithIdentifier("showCustomizeTopicsVC", sender:self)
         }
         
         if index == 3{
-            
+            sideBar.sideBarContainerView.hidden = true
+            sideBar.showSideBar(false)
             self.performSegueWithIdentifier("showFAQS&HelpVC", sender:self)
         }
         
         if index == 4{
-            
+            sideBar.sideBarContainerView.hidden = true
+            sideBar.showSideBar(false)
             self.performSegueWithIdentifier("showOptionsVC", sender:self)
         }
         
     }
+
     
     
     

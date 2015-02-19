@@ -100,37 +100,49 @@ class SearchVC: UIViewController, UITableViewDelegate,UITableViewDataSource, UIS
     
     @IBAction func btnSubmit(sender: AnyObject) {
         sideBar.showSideBar(!sideBar.isSideBarOpen)
+        if  sideBar.isSideBarOpen == false{
+            
+            sideBar.sideBarContainerView.hidden = true
+        }
     }
     
     
  
 
-   func sideBarDidSelectButtonAtIndex(index: Int) {
-    if index == 0{
-        self.performSegueWithIdentifier("showFollowedStoriesVC", sender:self)
+    func sideBarDidSelectButtonAtIndex(index: Int){
+        if index == 0{
+            sideBar.sideBarContainerView.hidden = true
+            sideBar.showSideBar(false)
+            self.performSegueWithIdentifier("showFollowedStoriesVC", sender:self)
+            
+        }
+        if index == 1{
+            sideBar.sideBarContainerView.hidden = true
+            sideBar.showSideBar(false)
+            self.performSegueWithIdentifier("showMainNewsVC", sender:self)
+        }
         
-    }
-    if index == 1{
+        if index == 2{
+            
+            sideBar.sideBarContainerView.hidden = true
+            sideBar.showSideBar(false)
+            self.performSegueWithIdentifier("showCustomizeTopicsVC", sender:self)
+        }
         
-        self.performSegueWithIdentifier("showMainNewsVC", sender:self)
+        if index == 3{
+            sideBar.sideBarContainerView.hidden = true
+            sideBar.showSideBar(false)
+            self.performSegueWithIdentifier("showFAQS&HelpVC", sender:self)
+        }
+        
+        if index == 4{
+            sideBar.sideBarContainerView.hidden = true
+            sideBar.showSideBar(false)
+            self.performSegueWithIdentifier("showOptionsVC", sender:self)
+        }
+        
     }
     
-    if index == 2{
-        
-        self.performSegueWithIdentifier("showCustomizeTopicsVC", sender:self)
-    }
-    
-    if index == 3{
-        
-        self.performSegueWithIdentifier("showFAQS&HelpVC", sender:self)
-    }
-    
-    if index == 4{
-        
-        self.performSegueWithIdentifier("showOptionsVC", sender:self)
-    }
-    
-    }
     
     @IBAction func searchButton(sender: AnyObject) {
         UIView.animateWithDuration(0.2, delay: 0.1, options: .CurveEaseOut, animations: {

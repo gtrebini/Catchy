@@ -137,11 +137,18 @@ class FollowedStoriesVC: UIViewController, UITableViewDelegate, UITableViewDataS
     //dichiara in tutte le opzioni
     @IBAction func btnSubmit(sender: AnyObject) {
         sideBar.showSideBar(!sideBar.isSideBarOpen)
+        
+        if  sideBar.isSideBarOpen == false{
+            
+            sideBar.sideBarContainerView.hidden = true
+        }
     }
     
     
     func sideBarDidSelectButtonAtIndex(index: Int){
         if index == 0{
+            sideBar.sideBarContainerView.hidden = true
+            sideBar.showSideBar(false)
            var storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             var vc:FollowedStoriesVC = storyboard.instantiateViewControllerWithIdentifier("FollowedStoriesVC") as FollowedStoriesVC
             navigationController?.pushViewController(vc, animated: true)
@@ -149,26 +156,32 @@ class FollowedStoriesVC: UIViewController, UITableViewDelegate, UITableViewDataS
             
         }
         if index == 1{
-            
+            sideBar.sideBarContainerView.hidden = true
+            sideBar.showSideBar(false)
             self.performSegueWithIdentifier("showMainNewsVC", sender:self)
         }
         
         if index == 2{
             
+            sideBar.sideBarContainerView.hidden = true
+            sideBar.showSideBar(false)
             self.performSegueWithIdentifier("showCustomizeTopicsVC", sender:self)
         }
         
         if index == 3{
-            
+            sideBar.sideBarContainerView.hidden = true
+            sideBar.showSideBar(false)
             self.performSegueWithIdentifier("showFAQS&HelpVC", sender:self)
         }
         
         if index == 4{
-            
+            sideBar.sideBarContainerView.hidden = true
+            sideBar.showSideBar(false)
             self.performSegueWithIdentifier("showOptionsVC", sender:self)
         }
         
     }
+
     
     
     @IBAction func searchButton(sender: AnyObject) {
