@@ -470,7 +470,7 @@
         <!--Home-->
         <scene sceneID="sQy-LR-M13">
             <objects>
-                <viewController storyboardIdentifier="Home" title="Home" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RgP-LY-VHM" customClass="HomeVC" customModule="Catchy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeVC" title="Home" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RgP-LY-VHM" customClass="HomeVC" customModule="Catchy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pIr-4E-1Y6"/>
                         <viewControllerLayoutGuide type="bottom" id="g0z-Wz-c7T"/>
@@ -2033,7 +2033,7 @@
         <!--Sign UpVC-->
         <scene sceneID="STn-mv-bFP">
             <objects>
-                <viewController storyboardIdentifier="Sign up" useStoryboardIdentifierAsRestorationIdentifier="YES" id="u8b-eQ-fh3" customClass="SignUpVC" customModule="Catchy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUp" useStoryboardIdentifierAsRestorationIdentifier="YES" id="u8b-eQ-fh3" customClass="SignUpVC" customModule="Catchy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tjf-c9-vdy"/>
                         <viewControllerLayoutGuide type="bottom" id="iUG-aK-bk2"/>
@@ -2070,7 +2070,8 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="RgP-LY-VHM" kind="show" id="TIm-C9-A1m"/>
+                                    <action selector="signupButtonTapped:" destination="u8b-eQ-fh3" eventType="touchUpInside" id="zH4-o8-fss"/>
+                                    <segue destination="UTB-G8-rls" kind="show" identifier="SignUpSucessfull" id="Js1-wR-6NE"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="EMAIL" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Wz-01-Kot">
@@ -2202,6 +2203,11 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="gnp-qz-KbB"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="passwordTF" destination="kCU-IK-nib" id="Tmi-eQ-tQB"/>
+                        <outlet property="signUpButton" destination="uHf-eU-FVb" id="Xcn-NV-Egp"/>
+                        <outlet property="usernameTF" destination="1Wz-01-Kot" id="fDT-5H-spW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C79-sg-46q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2311,7 +2317,7 @@
         <!--Sign InVC-->
         <scene sceneID="vyS-fx-oAq">
             <objects>
-                <viewController storyboardIdentifier="Sign in" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UTB-G8-rls" customClass="SignInVC" customModule="Catchy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignIn" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UTB-G8-rls" customClass="SignInVC" customModule="Catchy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="o4M-HB-21Y"/>
                         <viewControllerLayoutGuide type="bottom" id="Zmb-zx-M9h"/>
@@ -2435,7 +2441,8 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="RgP-LY-VHM" kind="show" id="KKP-rl-xCN"/>
+                                    <action selector="signInButtonTapped:" destination="UTB-G8-rls" eventType="touchUpInside" id="sqq-Ht-qTc"/>
+                                    <segue destination="RgP-LY-VHM" kind="show" identifier="SignInSuccessfull" id="KKP-rl-xCN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2479,6 +2486,11 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="a8o-HP-wps"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="passwordTF" destination="jzw-sF-Ply" id="cgF-3C-744"/>
+                        <outlet property="signInButton" destination="wR8-ZM-hnb" id="zFW-An-0um"/>
+                        <outlet property="usernameTF" destination="oVF-Nt-RCG" id="eSS-Dl-yyx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LNS-dx-IUR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2522,14 +2534,14 @@
         <image name="whale_black.png" width="336" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WNI-dB-Zn5"/>
-        <segue reference="dPj-Rv-eNo"/>
-        <segue reference="bWk-WH-4Yl"/>
-        <segue reference="bP7-1F-moN"/>
-        <segue reference="ecf-Ge-Bh1"/>
-        <segue reference="Ut7-H6-CiY"/>
-        <segue reference="FGR-mO-jUV"/>
-        <segue reference="U8o-SM-G61"/>
-        <segue reference="HPC-bK-lG3"/>
+        <segue reference="KKP-rl-xCN"/>
+        <segue reference="Js1-wR-6NE"/>
+        <segue reference="32v-VR-j1B"/>
+        <segue reference="WVW-lC-q3W"/>
+        <segue reference="0TP-71-3EQ"/>
+        <segue reference="rZl-pl-i8c"/>
+        <segue reference="Lsn-8U-MuU"/>
+        <segue reference="7SW-9i-EYA"/>
+        <segue reference="yNV-B4-Hlj"/>
     </inferredMetricsTieBreakers>
 </document>

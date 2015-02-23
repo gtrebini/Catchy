@@ -205,7 +205,7 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
              UIView.animateWithDuration(0.5, animations: { () -> Void in
                 
                 self.view.frame = CGRectOffset(self.view.frame, UIScreen.mainScreen().bounds.width, 0.0)
-                detailVC.view.frame = CGRectOffset(detailVC.view.frame, 0.0, 0.0)
+                detailVC.view.frame = CGRectOffset(detailVC.view.frame, UIScreen.mainScreen().bounds.width, 0.0)
                 
                 })
             }
