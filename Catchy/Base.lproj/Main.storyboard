@@ -2071,7 +2071,6 @@
                                 </state>
                                 <connections>
                                     <action selector="signupButtonTapped:" destination="u8b-eQ-fh3" eventType="touchUpInside" id="zH4-o8-fss"/>
-                                    <segue destination="UTB-G8-rls" kind="show" identifier="SignUpSucessfull" id="Js1-wR-6NE"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="EMAIL" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Wz-01-Kot">
@@ -2207,6 +2206,7 @@
                         <outlet property="passwordTF" destination="kCU-IK-nib" id="Tmi-eQ-tQB"/>
                         <outlet property="signUpButton" destination="uHf-eU-FVb" id="Xcn-NV-Egp"/>
                         <outlet property="usernameTF" destination="1Wz-01-Kot" id="fDT-5H-spW"/>
+                        <segue destination="UTB-G8-rls" kind="show" identifier="SignUpSucessfull" id="MHy-eb-rjF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C79-sg-46q" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2442,7 +2442,6 @@
                                 </state>
                                 <connections>
                                     <action selector="signInButtonTapped:" destination="UTB-G8-rls" eventType="touchUpInside" id="sqq-Ht-qTc"/>
-                                    <segue destination="RgP-LY-VHM" kind="show" identifier="SignInSuccessfull" id="KKP-rl-xCN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2490,6 +2489,7 @@
                         <outlet property="passwordTF" destination="jzw-sF-Ply" id="cgF-3C-744"/>
                         <outlet property="signInButton" destination="wR8-ZM-hnb" id="zFW-An-0um"/>
                         <outlet property="usernameTF" destination="oVF-Nt-RCG" id="eSS-Dl-yyx"/>
+                        <segue destination="RgP-LY-VHM" kind="show" identifier="SignInSucessfull" id="XkZ-QC-UZB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LNS-dx-IUR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2534,14 +2534,14 @@
         <image name="whale_black.png" width="336" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KKP-rl-xCN"/>
-        <segue reference="Js1-wR-6NE"/>
+        <segue reference="MHy-eb-rjF"/>
+        <segue reference="XkZ-QC-UZB"/>
         <segue reference="32v-VR-j1B"/>
         <segue reference="WVW-lC-q3W"/>
-        <segue reference="0TP-71-3EQ"/>
-        <segue reference="rZl-pl-i8c"/>
         <segue reference="Lsn-8U-MuU"/>
-        <segue reference="7SW-9i-EYA"/>
         <segue reference="yNV-B4-Hlj"/>
+        <segue reference="y0a-JF-OMT"/>
+        <segue reference="bWk-WH-4Yl"/>
+        <segue reference="bP7-1F-moN"/>
     </inferredMetricsTieBreakers>
 </document>

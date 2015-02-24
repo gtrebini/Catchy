@@ -71,6 +71,34 @@ class SignUpVC: UIViewController {
                 
                 let   responseString = NSString(data: data, encoding: NSUTF8StringEncoding)!
                 println("response: \(responseString)")
+               
+                if(responseString.containsString("500 Internal Server Error")){
+                    dispatch_async(dispatch_get_main_queue()){
+                    var storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    var vc:SignUpVC = storyboard.instantiateViewControllerWithIdentifier("SignUp") as SignUpVC
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    
+                    var alertView:UIAlertView
+                        = UIAlertView()
+                    alertView.title = "SignUp Failed!"
+                    alertView.message = "Username already exists"
+                    alertView.delegate = self
+                    alertView.addButtonWithTitle("OK")
+                    alertView.show()
+                    
+                    }
+                }else if(responseString.containsString("Success")){
+                    dispatch_async(dispatch_get_main_queue()){
+                        var alertView:UIAlertView = UIAlertView()
+                        alertView.title = "SignUp!"
+                        alertView.message = "SignUp Successfull"
+                        alertView.delegate = self
+                        alertView.addButtonWithTitle("OK")
+                        alertView.show()
+                    self.performSegueWithIdentifier("SignUpSucessfull", sender: self)
+                    }
+                }
+
               
             })
         task.resume()

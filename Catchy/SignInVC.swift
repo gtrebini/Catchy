@@ -16,13 +16,12 @@ class SignInVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+         passwordTF.secureTextEntry = true
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
@@ -68,8 +67,26 @@ class SignInVC: UIViewController {
                 
                 let   responseString = NSString(data: data, encoding: NSUTF8StringEncoding)!
                 println("response: \(responseString)")
-                self.performSegueWithIdentifier("SignInSuccessfull", sender: self)
                 
+                if(responseString.containsString("Success")){
+                    dispatch_async(dispatch_get_main_queue()){
+                        self.performSegueWithIdentifier("SignInSucessfull", sender: self)
+                    }
+                
+                }else if(responseString.containsString("Invalid username/password")){
+                     dispatch_async(dispatch_get_main_queue()){
+                    var storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    var vc:SignInVC = storyboard.instantiateViewControllerWithIdentifier("SignIn") as SignInVC
+                    var alertView:UIAlertView = UIAlertView()
+                    alertView.title = "Sign in Failed!"
+                    alertView.message = "Incorrect Username and/or Password"
+                    alertView.delegate = self
+                    alertView.addButtonWithTitle("OK")
+                    alertView.show()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                 }
+
+                }
             })
             task.resume()
                 
