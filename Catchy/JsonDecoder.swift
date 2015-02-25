@@ -26,7 +26,7 @@ class JsonDecoder {
         
         var dateFormatter = NSDateFormatter()
         
-        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
         
         
         

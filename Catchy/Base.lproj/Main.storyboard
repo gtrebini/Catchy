@@ -633,6 +633,9 @@
                                                     <state key="normal" image="unfollowed.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="followButtonPressed:" destination="RgP-LY-VHM" eventType="touchUpInside" id="v9I-Wz-9dU"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1080,10 +1083,10 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OwL-JO-DxG">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OwL-JO-DxG">
                                         <rect key="frame" x="0.0" y="180" width="600" height="80"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAm-lc-Uiv">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAm-lc-Uiv">
                                                 <rect key="frame" x="8" y="8" width="584" height="64"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <attributedString key="attributedText">
@@ -1125,7 +1128,7 @@
                                             <constraint firstAttribute="height" constant="30" id="KJR-s7-2Pg"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NlJ-rQ-cpw">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NlJ-rQ-cpw">
                                         <rect key="frame" x="0.0" y="260" width="600" height="31"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="follow story" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9A-DN-GbK">
@@ -1143,7 +1146,7 @@
                                             <constraint firstItem="M9A-DN-GbK" firstAttribute="leading" secondItem="NlJ-rQ-cpw" secondAttribute="leadingMargin" id="xtD-Oy-FPH"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HhS-UL-KbF">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HhS-UL-KbF">
                                         <rect key="frame" x="0.0" y="291" width="600" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZb-Xf-bGd">
@@ -1163,12 +1166,19 @@
                                             <constraint firstItem="CZb-Xf-bGd" firstAttribute="leading" secondItem="HhS-UL-KbF" secondAttribute="leadingMargin" id="xcd-k7-qPI"/>
                                         </constraints>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unfollowed.png" translatesAutoresizingMaskIntoConstraints="NO" id="mib-U2-TUT">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63s-lQ-xdS" userLabel="ButtonFollow">
                                         <rect key="frame" x="510" y="242" width="90" height="66"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="Sk0-C0-mDQ"/>
+                                            <constraint firstAttribute="width" constant="90" id="cQJ-E4-Bt3"/>
+                                            <constraint firstAttribute="height" constant="66" id="pUF-M2-cFY"/>
                                         </constraints>
-                                    </imageView>
+                                        <state key="normal" image="unfollowed.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="followButtonPressed:" destination="HQd-es-PpB" eventType="touchUpInside" id="UxJ-fQ-OzW"/>
+                                        </connections>
+                                    </button>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Igm-pm-olm">
                                         <rect key="frame" x="0.0" y="422" width="600" height="30"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1196,19 +1206,18 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="ceh-pm-2YD" firstAttribute="leading" secondItem="OwL-JO-DxG" secondAttribute="leading" id="0yY-t1-I8B"/>
-                                    <constraint firstItem="mib-U2-TUT" firstAttribute="trailing" secondItem="NlJ-rQ-cpw" secondAttribute="trailing" id="9eV-AC-KIk"/>
-                                    <constraint firstItem="NlJ-rQ-cpw" firstAttribute="centerY" secondItem="mib-U2-TUT" secondAttribute="centerY" id="AxT-6h-A6u"/>
+                                    <constraint firstItem="63s-lQ-xdS" firstAttribute="top" secondItem="VzY-Cg-cxf" secondAttribute="bottom" constant="62" id="9fH-HL-xWl"/>
                                     <constraint firstItem="Igm-pm-olm" firstAttribute="trailing" secondItem="HhS-UL-KbF" secondAttribute="trailing" id="C7O-5i-bYt"/>
                                     <constraint firstItem="OwL-JO-DxG" firstAttribute="leading" secondItem="NlJ-rQ-cpw" secondAttribute="leading" id="DXd-zU-96A"/>
                                     <constraint firstItem="Igm-pm-olm" firstAttribute="leading" secondItem="HhS-UL-KbF" secondAttribute="leading" id="E8Q-5a-K3t"/>
                                     <constraint firstItem="VzY-Cg-cxf" firstAttribute="top" secondItem="LgA-w8-aVY" secondAttribute="bottom" id="Gbu-OP-vJq"/>
-                                    <constraint firstItem="z6x-GO-js0" firstAttribute="top" secondItem="mib-U2-TUT" secondAttribute="bottom" constant="21" id="I5W-3G-Kx1"/>
                                     <constraint firstItem="pFb-BO-uwh" firstAttribute="top" secondItem="z6x-GO-js0" secondAttribute="bottom" constant="10" id="MTS-Gq-h4y"/>
                                     <constraint firstItem="z6x-GO-js0" firstAttribute="leading" secondItem="VbZ-SP-Eej" secondAttribute="leadingMargin" id="Pvb-1d-XEo"/>
                                     <constraint firstItem="Igm-pm-olm" firstAttribute="top" secondItem="pFb-BO-uwh" secondAttribute="bottom" constant="8" symbolic="YES" id="Qm7-y3-QYM"/>
                                     <constraint firstItem="VzY-Cg-cxf" firstAttribute="trailing" secondItem="OwL-JO-DxG" secondAttribute="trailing" id="SOt-Ys-ZTb"/>
                                     <constraint firstItem="NlJ-rQ-cpw" firstAttribute="trailing" secondItem="ceh-pm-2YD" secondAttribute="trailing" id="SP3-FP-hFx"/>
                                     <constraint firstItem="OwL-JO-DxG" firstAttribute="trailing" secondItem="NlJ-rQ-cpw" secondAttribute="trailing" id="UqC-X9-eHt"/>
+                                    <constraint firstAttribute="trailing" secondItem="63s-lQ-xdS" secondAttribute="trailing" id="WzV-jK-br4"/>
                                     <constraint firstItem="HhS-UL-KbF" firstAttribute="centerX" secondItem="z6x-GO-js0" secondAttribute="centerX" id="XDm-Kw-Mm1"/>
                                     <constraint firstAttribute="trailing" secondItem="OwL-JO-DxG" secondAttribute="trailing" id="Xsv-Nj-RnN"/>
                                     <constraint firstItem="NlJ-rQ-cpw" firstAttribute="top" secondItem="OwL-JO-DxG" secondAttribute="bottom" id="YdE-tF-KfC"/>
@@ -1221,7 +1230,6 @@
                                     <constraint firstItem="HhS-UL-KbF" firstAttribute="top" secondItem="NlJ-rQ-cpw" secondAttribute="bottom" id="tQo-MK-8g6"/>
                                     <constraint firstItem="Igm-pm-olm" firstAttribute="top" secondItem="ceh-pm-2YD" secondAttribute="bottom" id="ube-pe-kIZ"/>
                                     <constraint firstItem="LgA-w8-aVY" firstAttribute="top" secondItem="VbZ-SP-Eej" secondAttribute="top" id="vUF-6j-O97"/>
-                                    <constraint firstItem="mib-U2-TUT" firstAttribute="top" secondItem="VzY-Cg-cxf" secondAttribute="bottom" constant="62" id="xci-Df-9el"/>
                                     <constraint firstAttribute="bottom" secondItem="Igm-pm-olm" secondAttribute="bottom" id="yIb-9c-5oW"/>
                                     <constraint firstItem="VzY-Cg-cxf" firstAttribute="leading" secondItem="LgA-w8-aVY" secondAttribute="leading" id="yeQ-Un-ws6"/>
                                     <constraint firstItem="OwL-JO-DxG" firstAttribute="leading" secondItem="VzY-Cg-cxf" secondAttribute="leading" id="yho-s8-wtg"/>
@@ -1266,13 +1274,16 @@
                     <connections>
                         <outlet property="body2" destination="z6x-GO-js0" id="QdQ-MR-SAT"/>
                         <outlet property="date2Label" destination="CZb-Xf-bGd" id="S7o-Cz-0Va"/>
+                        <outlet property="followButton" destination="63s-lQ-xdS" id="uJ6-kI-2lU"/>
                         <outlet property="followStory2" destination="M9A-DN-GbK" id="gpW-w5-8zY"/>
+                        <outlet property="followStoryLabel" destination="M9A-DN-GbK" id="oBL-o5-GcA"/>
                         <outlet property="image2" destination="VzY-Cg-cxf" id="YNw-Ih-rWZ"/>
                         <outlet property="searchBar2" destination="elZ-hB-9cP" id="fbc-wU-bXR"/>
                         <outlet property="source2Label" destination="kpc-Jq-1vd" id="wA4-8e-kZg"/>
                         <outlet property="storiaTitolo" destination="a2F-Jk-auu" id="dTL-FU-rAG"/>
                         <outlet property="titolo2Label" destination="iAm-lc-Uiv" id="k1M-mt-jZw"/>
                         <outlet property="totalView" destination="Xoz-Sr-0gf" id="39s-na-bbq"/>
+                        <outlet property="viewFollowStoryLabel" destination="NlJ-rQ-cpw" id="ai1-Cs-yem"/>
                         <outlet property="viewSwipe" destination="ceh-pm-2YD" id="nzs-3A-Xsr"/>
                         <segue destination="1Ti-3E-Gdd" kind="show" identifier="searchVC2" id="l6h-Ul-n2G"/>
                         <segue destination="CdY-pe-hj2" kind="show" identifier="showFollowedStoriesVC" id="VIF-bd-sMj"/>
@@ -2534,14 +2545,14 @@
         <image name="whale_black.png" width="336" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MHy-eb-rjF"/>
-        <segue reference="XkZ-QC-UZB"/>
-        <segue reference="32v-VR-j1B"/>
-        <segue reference="WVW-lC-q3W"/>
-        <segue reference="Lsn-8U-MuU"/>
-        <segue reference="yNV-B4-Hlj"/>
+        <segue reference="dPj-Rv-eNo"/>
+        <segue reference="l6h-Ul-n2G"/>
+        <segue reference="NeX-hc-shK"/>
+        <segue reference="8yw-yE-cvH"/>
+        <segue reference="O5F-fF-qpG"/>
         <segue reference="y0a-JF-OMT"/>
-        <segue reference="bWk-WH-4Yl"/>
-        <segue reference="bP7-1F-moN"/>
+        <segue reference="5Co-1F-nqY"/>
+        <segue reference="0MZ-f6-gkc"/>
+        <segue reference="HPC-bK-lG3"/>
     </inferredMetricsTieBreakers>
 </document>

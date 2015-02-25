@@ -13,6 +13,10 @@ class SignInVC: UIViewController {
     @IBOutlet var usernameTF:UITextField!
     @IBOutlet var passwordTF:UITextField!
     @IBOutlet var signInButton:UIButton!
+    
+    //per la login
+    var path:String!
+    var fileManager:NSFileManager!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +37,19 @@ class SignInVC: UIViewController {
     
     
     @IBAction func signInButtonTapped (sender:UIButton){
+        var actInd:UIActivityIndicatorView = UIActivityIndicatorView()
+        actInd.frame = CGRectMake(self.view.frame.width/2-50 , self.view.frame.height/2+60, 100, 100)
+        self.view.addSubview(actInd)
+        actInd.hidden = false
+        actInd.startAnimating()
+
         
         var username:NSString = usernameTF.text
         var password:NSString = passwordTF.text
         
         if ( username.isEqualToString("") || password.isEqualToString("") ) {
+            actInd.stopAnimating()
+            actInd.hidesWhenStopped = true
             var storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             var vc:SignInVC = storyboard.instantiateViewControllerWithIdentifier("SignIn") as SignInVC
             navigationController?.pushViewController(vc, animated: true)
@@ -51,6 +63,7 @@ class SignInVC: UIViewController {
             
         } else {
             
+
             
             let request = NSMutableURLRequest(URL: NSURL(string: "http://localhost:8888/Catchy/signin.php")!)
             request.HTTPMethod = "POST"
@@ -71,9 +84,26 @@ class SignInVC: UIViewController {
                 if(responseString.containsString("Success")){
                     dispatch_async(dispatch_get_main_queue()){
                         self.performSegueWithIdentifier("SignInSucessfull", sender: self)
+                        
+                        actInd.stopAnimating()
+                        actInd.hidesWhenStopped = true
+                        
+                        let paths=NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, .UserDomainMask, true)
+                        let documentsDirectory = paths[0] as NSString
+                        self.path=documentsDirectory.stringByAppendingPathComponent("LoginFile.plist")
+                        self.fileManager = NSFileManager.defaultManager()
+                        var cred:String = username+"_"+password+"\n"
+                        if(!self.fileManager.fileExistsAtPath(self.path)){
+                            self.fileManager.createFileAtPath(self.path, contents: nil, attributes: nil)
+                            var content:NSData = cred.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!
+                            content.writeToFile(self.path, atomically: true)
+                        }
+                        
                     }
                 
                 }else if(responseString.containsString("Invalid username/password")){
+                    actInd.stopAnimating()
+                    actInd.hidesWhenStopped = true
                      dispatch_async(dispatch_get_main_queue()){
                     var storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     var vc:SignInVC = storyboard.instantiateViewControllerWithIdentifier("SignIn") as SignInVC

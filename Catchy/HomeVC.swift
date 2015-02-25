@@ -11,6 +11,7 @@ import Foundation
 
     var news = [Notizie]()
     var notizieSearch = [Notizie]()
+    var storieSeguite = NSMutableArray()
 
 
 class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, SideBarDelegate {
@@ -27,11 +28,78 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     @IBOutlet var totalView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    var username:String!
+    var password:String!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-  
+        
+        //riempire l'array delle notizie seguite
+        
+        //se l'utente è registrato ed è online prendere le notizie dal db
+        let paths=NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0] as NSString
+        var path:String=documentsDirectory.stringByAppendingPathComponent("LoginFile.plist")
+        var fileManager:NSFileManager = NSFileManager.defaultManager()
+        if(fileManager.fileExistsAtPath(path)){
+            var fileContent:NSData = fileManager.contentsAtPath(path)!
+            var str:NSString = NSString (data: fileContent, encoding: NSUTF8StringEncoding)!
+            username = str.componentsSeparatedByString("_")[0] as String
+            password = str.componentsSeparatedByString("_")[1] as String
+        }
+       
+        if(username != nil && password != nil ){//utente registrato - online
+            //var fileContent:NSData = fileManager.contentsAtPath(path)!
+            //var str:NSString = NSString (data: fileContent, encoding: NSUTF8StringEncoding)!
+            
+            var streamReader = StreamReader (path:path)
+            while let line = streamReader?.nextLine(){
+                println(line)
+            }
+            
+            
+            let request = NSMutableURLRequest(URL: NSURL(string: "http://localhost:8888/Catchy/listFollowStories.php")!)
+            request.HTTPMethod = "POST"
+            
+            let postString = "username=\(username)&password=\(password)"
+            
+            request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {(data, response, error)
+                in
+                
+                if error != nil {
+                    println("error=\(error)")
+                    return
+                }
+                
+                let   responseString = NSString(data: data, encoding: NSUTF8StringEncoding)!
+                println("response: \(responseString)")
+                
+                if(responseString != ""){
+                    dispatch_async(dispatch_get_main_queue()){
+                       let separators = NSCharacterSet(charactersInString: "|")
+                        var resString:String = responseString as String
+                        var resStringNoN = resString.stringByReplacingOccurrencesOfString("\n", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                        var arrayRes:NSArray = resStringNoN.componentsSeparatedByCharactersInSet(separators)
+                        for i in 0...arrayRes.count-1{
+                            storieSeguite.addObject(arrayRes[i])
+                        }
+                                                
+                        println(storieSeguite)
+                    }
+                }
+                
+                
+            })
+            task.resume()
+        
+        
+    
+
+        }
+
+
         notizieSearch = [Notizie]()
         
         actInd = UIActivityIndicatorView()
@@ -82,7 +150,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
  
         var dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MMM. dd yyyy / HH:mm"
+        dateFormatter.dateFormat = "MMM. dd yyyy / HH:mm:ss"
         
   
         var cell = tableView.dequeueReusableCellWithIdentifier("NewsCell") as CustomCell
@@ -247,5 +315,13 @@ extension String {
         }while(attributeString == nil)
         
         self.init(attributeString.string)
+    }
+}
+
+extension StreamReader:SequenceType {
+     func generate() -> GeneratorOf<String> {
+        return GeneratorOf<String>{
+            return self.nextLine()
+        }
     }
 }

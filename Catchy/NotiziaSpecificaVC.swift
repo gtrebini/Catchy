@@ -24,6 +24,13 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
     var notiziaIndexCorrente:Notizie!
     var immaginiNotiziaCorrente:[UIImage]!
     var immaginiIndexCorrente:Int!
+    var username:String!
+    var password:String!
+    var follow:Bool!
+    var path:String!
+    var fileManager:NSFileManager!
+    
+    @IBOutlet var followButton: UIButton!
 
     
     @IBOutlet weak var searchBar2: UISearchBar!
@@ -37,6 +44,10 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
     @IBOutlet weak var viewSwipe: UIView!
     @IBOutlet var storiaTitolo: UILabel!
     
+    @IBOutlet var followStoryLabel: UILabel!
+    
+    @IBOutlet var viewFollowStoryLabel: UIView!
+    
     
     var notizia = Notizie (pageid: 0, pageidstoria: 0, pageurl: "", pageurlstoria: "", titlestoria: "", aggiornato: NSDate(),category: "", date: NSDate(), title: "", image: [UIImage](), body: "")
     
@@ -45,7 +56,48 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         
         super.viewDidLoad()
         
+        
+
+        
         notizieSearch = [Notizie]()
+        
+        follow = false
+        if(storieSeguite.count > 0){
+            println(storieSeguite)
+            for i in 0...storieSeguite.count-1{
+                var stSeg:AnyObject = storieSeguite[i]
+                if(notizia.pageidstoria == stSeg as? Int){
+                    follow = true
+                }
+            }
+            
+        }else{
+            follow = false
+        }
+        println(follow)
+        
+        if(follow==true){
+            var imageButton:UIImage = UIImage(named: "followButton")!
+            var sizeImageButton = CGSizeMake(90, 66)
+            self.followButton.setImage(imageButton, forState: .Normal)
+            
+            self.followStoryLabel.text = "followed story"
+            self.followStoryLabel.font = UIFont (name: "PlayfairDisplay-Italic", size: 16)
+            self.followStoryLabel.textColor = UIColor(red: 217/255, green: 120/255, blue: 0, alpha: 1)
+            self.followStoryLabel.backgroundColor = UIColor(red: 255/255, green: 179/255, blue: 0, alpha: 1)
+            self.viewFollowStoryLabel.backgroundColor = UIColor(red: 255/255, green: 179/255, blue: 0, alpha: 1)
+        }else{
+            var imageButton:UIImage = UIImage(named: "unfollowed.png")!
+            var sizeImageButton = CGSizeMake(90, 66)
+            self.followButton.setImage(imageButton, forState: .Normal)
+            
+            self.followStoryLabel.text = "follow story"
+            self.followStoryLabel.font = UIFont (name: "PlayfairDisplay-Italic", size: 16)
+            self.followStoryLabel.textColor = UIColor.blackColor()
+            self.followStoryLabel.backgroundColor = UIColor(red: 217/255, green: 214/255, blue: 215/255, alpha: 1)
+            self.viewFollowStoryLabel.backgroundColor = UIColor(red: 217/255, green: 214/255, blue: 215/255, alpha: 1)
+ 
+        }
         
         searchBar2.delegate = self
         notizieAll = Array<Notizie>()
@@ -55,7 +107,7 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         sideBar = SideBar(sourceView: self.view)
         sideBar.delegate = self
         
-        dateFormatter.dateFormat = "MMM. dd yyyy / HH:mm"
+        dateFormatter.dateFormat = "MMM. dd yyyy / HH:mm:ss"
         
         storiaTitolo.text = notizia.titlestoria
         storiaTitolo.font = UIFont (name: "PlayfairDisplay-Italic", size: 18)
@@ -151,6 +203,21 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         println("swipeLeft")
         self.image2.addGestureRecognizer(swipeLeftImmagini)
         
+        let paths=NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0] as NSString
+        path=documentsDirectory.stringByAppendingPathComponent("LoginFile.plist")
+        fileManager = NSFileManager.defaultManager()
+        if(fileManager.fileExistsAtPath(path)){
+            var fileContent:NSData = fileManager.contentsAtPath(path)!
+            var str:NSString = NSString (data: fileContent, encoding: NSUTF8StringEncoding)!
+             username = str.componentsSeparatedByString("_")[0] as String
+             password = str.componentsSeparatedByString("_")[1] as String
+        }
+
+        var streamReader = StreamReader (path:path)
+        while let line = streamReader?.nextLine(){
+            println(line)
+        }
         
         
     }
@@ -396,6 +463,114 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
 
    
    
+    @IBAction func followButtonPressed(sender: AnyObject) {
+        
+        if(follow == false){
+            if(username != nil && password != nil){
+            
+                let request = NSMutableURLRequest(URL: NSURL(string: "http://localhost:8888/Catchy/followedUserStories.php")!)
+                request.HTTPMethod = "POST"
+                var titleStoria = notizia.titlestoria
+                var titleStoriaLower = titleStoria.lowercaseString
+                var titleStoriaNoApostrophe = titleStoriaLower.stringByReplacingOccurrencesOfString("'", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+
+                var titleStoriaNoBlank = titleStoriaNoApostrophe.stringByReplacingOccurrencesOfString(" ", withString: "-", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            
+                var idStoria = notizia.pageidstoria
+            
+                let postString = "username=\(username)&password=\(password)&titlestoria=\(titleStoriaNoBlank)&idstoria=\(idStoria)"
+            
+                request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+                let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {(data, response, error)
+                    in
+                
+                    if error != nil {
+                        println("error=\(error)")
+                        return
+                    }
+                
+                    let   responseString = NSString(data: data, encoding: NSUTF8StringEncoding)!
+                    println("response: \(responseString)")
+                    
+                    if(responseString.containsString("Success")){
+                         dispatch_async(dispatch_get_main_queue()){
+                            
+                            var notiziaString1:String = "\(self.notizia.pageid)"+"_"+"\(self.notizia.pageidstoria)"+"_"
+                            var notiziaString2:String = self.notizia.pageurlstoria+"_"+self.notizia.titlestoria+"_"
+                            var notiziaString3: String = "\(self.notizia.aggiornato)"+"_"+self.notizia.category
+                            var notiziaString4:String = "_"+"\(self.notizia.date)"+"_"+self.notizia.title
+                            var notiziaString5:String = "_"+"\(self.notizia.image)"+"_"+self.notizia.body+"\n"
+                            var notiziaString:String = notiziaString1+notiziaString2+notiziaString3+notiziaString4+notiziaString5
+                            var content:NSData = notiziaString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!
+                            content.writeToFile(self.path, atomically: true)
+                        storieSeguite.addObject(self.notizia.pageidstoria)
+                        var imageButton:UIImage = UIImage(named: "followButton")!
+                        var sizeImageButton = CGSizeMake(90, 66)
+                        self.followButton.setImage(imageButton, forState: .Normal)
+                        
+                        self.followStoryLabel.text = "followed story"
+                        self.followStoryLabel.font = UIFont (name: "PlayfairDisplay-Italic", size: 16)
+                        self.followStoryLabel.textColor = UIColor(red: 217/255, green: 120/255, blue: 0, alpha: 1)
+                        self.followStoryLabel.backgroundColor = UIColor(red: 255/255, green: 179/255, blue: 0, alpha: 1)
+                        self.viewFollowStoryLabel.backgroundColor = UIColor(red: 255/255, green: 179/255, blue: 0, alpha: 1)
+                    }
+                }
+                
+
+                })
+                task.resume()
+            }
+        }else if(follow==true){
+            if(username != nil && password != nil){
+                storieSeguite.removeObject(notizia.pageidstoria)
+                let request = NSMutableURLRequest(URL: NSURL(string: "http://localhost:8888/Catchy/unfollowedUserStories.php")!)
+                request.HTTPMethod = "POST"
+                var titleStoria = notizia.titlestoria
+                var titleStoriaLower = titleStoria.lowercaseString
+                var titleStoriaNoApostrophe = titleStoriaLower.stringByReplacingOccurrencesOfString("'", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                
+                var titleStoriaNoBlank = titleStoriaNoApostrophe.stringByReplacingOccurrencesOfString(" ", withString: "-", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                
+                var idStoria = notizia.pageidstoria
+                
+                let postString = "username=\(username)&password=\(password)&titlestoria=\(titleStoriaNoBlank)&idstoria=\(idStoria)"
+                
+                request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+                let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {(data, response, error)
+                    in
+                    
+                    if error != nil {
+                        println("error=\(error)")
+                        return
+                    }
+                    
+                    let   responseString = NSString(data: data, encoding: NSUTF8StringEncoding)!
+                    println("response: \(responseString)")
+                    
+                    if(responseString.containsString("Success")){
+                        dispatch_async(dispatch_get_main_queue()){
+                          
+                            
+                            var imageButton:UIImage = UIImage(named: "unfollowed.png")!
+                            var sizeImageButton = CGSizeMake(90, 66)
+                            self.followButton.setImage(imageButton, forState: .Normal)
+                            
+                            self.followStoryLabel.text = "follow story"
+                            self.followStoryLabel.font = UIFont (name: "PlayfairDisplay-Italic", size: 16)
+                            self.followStoryLabel.textColor = UIColor.blackColor()
+                            self.followStoryLabel.backgroundColor = UIColor(red: 217/255, green: 214/255, blue: 215/255, alpha: 1)
+                            self.viewFollowStoryLabel.backgroundColor = UIColor(red: 217/255, green: 214/255, blue: 215/255, alpha: 1)
+                        }
+                    }
+                    
+                    
+                })
+                task.resume()
+            }
+
+        }
+        
+    }
     
     
      override func didReceiveMemoryWarning() {

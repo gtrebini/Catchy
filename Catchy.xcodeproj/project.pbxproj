@@ -12,6 +12,8 @@
 		2933E3011A94A251000343BE /* CustomizeTopicsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2933E3001A94A251000343BE /* CustomizeTopicsVC.swift */; };
 		2933E3031A94A539000343BE /* CustomCellTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2933E3021A94A539000343BE /* CustomCellTopic.swift */; };
 		296FD8551A9240FB00E1FBF6 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FD8541A9240FB00E1FBF6 /* TransitionManager.swift */; };
+		29A74FEA1A9DD95E001C0A91 /* followButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A74FE91A9DD95E001C0A91 /* followButton.png */; };
+		29A74FEC1A9E29DC001C0A91 /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A74FEB1A9E29DC001C0A91 /* StreamReader.swift */; };
 		5916B1611A6D02A60015DDAC /* bracket_gray.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5916B1501A6D02A60015DDAC /* bracket_gray.pdf */; };
 		5916B1621A6D02A60015DDAC /* bracket_green.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5916B1511A6D02A60015DDAC /* bracket_green.pdf */; };
 		5916B1631A6D02A60015DDAC /* catchy_logo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5916B1521A6D02A60015DDAC /* catchy_logo.pdf */; };
@@ -101,6 +103,8 @@
 		2933E3001A94A251000343BE /* CustomizeTopicsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizeTopicsVC.swift; sourceTree = "<group>"; };
 		2933E3021A94A539000343BE /* CustomCellTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellTopic.swift; sourceTree = "<group>"; };
 		296FD8541A9240FB00E1FBF6 /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
+		29A74FE91A9DD95E001C0A91 /* followButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = followButton.png; sourceTree = "<group>"; };
+		29A74FEB1A9E29DC001C0A91 /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
 		5916B1501A6D02A60015DDAC /* bracket_gray.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = bracket_gray.pdf; sourceTree = "<group>"; };
 		5916B1511A6D02A60015DDAC /* bracket_green.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = bracket_green.pdf; sourceTree = "<group>"; };
 		5916B1521A6D02A60015DDAC /* catchy_logo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = catchy_logo.pdf; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 				5916B1511A6D02A60015DDAC /* bracket_green.pdf */,
 				5916B1521A6D02A60015DDAC /* catchy_logo.pdf */,
 				5916B1531A6D02A60015DDAC /* circle_big.pdf */,
+				29A74FE91A9DD95E001C0A91 /* followButton.png */,
 				5916B1541A6D02A60015DDAC /* follow.pdf */,
 				5916B1551A6D02A60015DDAC /* followed.pdf */,
 				5916B1561A6D02A60015DDAC /* ico_fb.pdf */,
@@ -267,6 +272,7 @@
 				599D9BBD1A76945A00AD7636 /* JsonDecoder.swift */,
 				598A3FAF1A82609700A0D7F0 /* SideBarTableViewController.swift */,
 				598A3FB11A82661E00A0D7F0 /* SideBar.swift */,
+				29A74FEB1A9E29DC001C0A91 /* StreamReader.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -515,6 +521,7 @@
 				59C0BAB31A5EA7B000A4E0E9 /* archiviazione.jpg in Resources */,
 				5916B1651A6D02A60015DDAC /* follow.pdf in Resources */,
 				59BB42EA1A8E3937002E5581 /* normal_new_N.pdf in Resources */,
+				29A74FEA1A9DD95E001C0A91 /* followButton.png in Resources */,
 				59BB42E01A8E3937002E5581 /* follow_N.pdf in Resources */,
 				59C0BA921A5E972800A4E0E9 /* Main.storyboard in Resources */,
 				59F204BB1A7FD006006BFD84 /* PlayfairDisplaySC-Regular.ttf in Resources */,
@@ -583,6 +590,7 @@
 				2933E3011A94A251000343BE /* CustomizeTopicsVC.swift in Sources */,
 				59903B4E1A8CA44000E436E9 /* NotiziaSpecificaNextVC.swift in Sources */,
 				595C3DF61A84FE6B00F5BB19 /* FollowedStoriesVC.swift in Sources */,
+				29A74FEC1A9E29DC001C0A91 /* StreamReader.swift in Sources */,
 				598A3FB01A82609700A0D7F0 /* SideBarTableViewController.swift in Sources */,
 				59994B3A1A5FD6740001B7C4 /* SignUpVC.swift in Sources */,
 				59A10DF41A8A02DE00DE0000 /* MainNewsVC.swift in Sources */,
