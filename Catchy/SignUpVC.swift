@@ -64,11 +64,11 @@ class SignUpVC: UIViewController {
             println(username)
             println(password)
             
-            let request = NSMutableURLRequest(URL: NSURL(string: "http://localhost:8888/Catchy/signup.php")!)
-            request.HTTPMethod = "POST"
-            let postString = "username=\(username)&password=\(password)"
+            let request = NSMutableURLRequest(URL: NSURL(string: "http://localhost:8888/Catchy/users/?email=\(username)&password=\(password)")!)
+            request.HTTPMethod = "GET"
+          
             
-            request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+            //request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
             let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {(data, response, error)
                 in
                 
@@ -80,11 +80,11 @@ class SignUpVC: UIViewController {
                 let   responseString = NSString(data: data, encoding: NSUTF8StringEncoding)!
                 println("response: \(responseString)")
                
-                if(responseString.containsString("500 Internal Server Error")){
+                if(responseString.containsString("User email already registered")){
                     dispatch_async(dispatch_get_main_queue()){
                     var alertView:UIAlertView = UIAlertView()
-                    alertView.title = "SignUp Failed!"
-                    alertView.message = "Username already exists"
+                        alertView.title = "SignUp Failed!"
+                    alertView.message = "Email already exists"
                     alertView.delegate = self
                     alertView.addButtonWithTitle("OK")
                     alertView.show()
@@ -96,7 +96,7 @@ class SignUpVC: UIViewController {
                     actInd.hidesWhenStopped = true
                         
                     }
-                }else if(responseString.containsString("Success")){
+                }else if(responseString.containsString("Saved")){
                     actInd.stopAnimating()
                     actInd.hidesWhenStopped = true
                     dispatch_async(dispatch_get_main_queue()){
@@ -107,6 +107,22 @@ class SignUpVC: UIViewController {
                         alertView.addButtonWithTitle("OK")
                         alertView.show()
                     self.performSegueWithIdentifier("SignUpSucessfull", sender: self)
+                    }
+                }else if(responseString.containsString("Invalid email address")){
+                    dispatch_async(dispatch_get_main_queue()){
+                        var alertView:UIAlertView = UIAlertView()
+                        alertView.title = "SignUp Failed!"
+                        alertView.message = "Invalid email address"
+                        alertView.delegate = self
+                        alertView.addButtonWithTitle("OK")
+                        alertView.show()
+                        var storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        var vc:SignUpVC = storyboard.instantiateViewControllerWithIdentifier("SignUp") as SignUpVC
+                        
+                        self.navigationController?.pushViewController(vc, animated: true)
+                        actInd.stopAnimating()
+                        actInd.hidesWhenStopped = true
+                        
                     }
                 }
 

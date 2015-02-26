@@ -212,6 +212,8 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
             var str:NSString = NSString (data: fileContent, encoding: NSUTF8StringEncoding)!
              username = str.componentsSeparatedByString("_")[0] as String
              password = str.componentsSeparatedByString("_")[1] as String
+            println(username)
+            println(password)
         }
 
         var streamReader = StreamReader (path:path)
@@ -495,15 +497,20 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
                     if(responseString.containsString("Success")){
                          dispatch_async(dispatch_get_main_queue()){
                             
-                            var notiziaString1:String = "\(self.notizia.pageid)"+"_"+"\(self.notizia.pageidstoria)"+"_"
-                            var notiziaString2:String = self.notizia.pageurlstoria+"_"+self.notizia.titlestoria+"_"
-                            var notiziaString3: String = "\(self.notizia.aggiornato)"+"_"+self.notizia.category
-                            var notiziaString4:String = "_"+"\(self.notizia.date)"+"_"+self.notizia.title
-                            var notiziaString5:String = "_"+"\(self.notizia.image)"+"_"+self.notizia.body+"\n"
-                            var notiziaString:String = notiziaString1+notiziaString2+notiziaString3+notiziaString4+notiziaString5
-                            var content:NSData = notiziaString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!
-                            content.writeToFile(self.path, atomically: true)
-                        storieSeguite.addObject(self.notizia.pageidstoria)
+                            //var notiziaString1:String = "\(self.notizia.pageid)"+"_"+"\(self.notizia.pageidstoria)"+"_"
+                            //var notiziaString2:String = self.notizia.pageurlstoria+"_"+self.notizia.titlestoria+"_"
+                            //var notiziaString3: String = "\(self.notizia.aggiornato)"+"_"+self.notizia.category
+                            //var notiziaString4:String = "_"+"\(self.notizia.date)"+"_"+self.notizia.title
+                            //var notiziaString5:String = "_"+"\(self.notizia.image)"+"_"+self.notizia.body+"\n"
+                            //var notiziaString:String = notiziaString1+notiziaString2+notiziaString3+notiziaString4+notiziaString5
+                            //var content:NSData = notiziaString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!
+                            //content.writeToFile(self.path, atomically: true)
+                           
+                         
+                        if(!self.containsElement(storieSeguite,value: self.notizia.pageidstoria)){
+                                storieSeguite.addObject(self.notizia.pageidstoria)
+                        }
+                            
                         var imageButton:UIImage = UIImage(named: "followButton")!
                         var sizeImageButton = CGSizeMake(90, 66)
                         self.followButton.setImage(imageButton, forState: .Normal)
@@ -572,6 +579,15 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         
     }
     
+    func containsElement(storieSeguiteFunc:NSMutableArray, value:Int)->Bool{
+        for st in storieSeguiteFunc{
+            if st as Int == value{
+                return false
+            }
+        }
+        return true
+    }
+    
     
      override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -594,6 +610,8 @@ extension Array{
         return nil
     }
 }
+
+
 
 
 
