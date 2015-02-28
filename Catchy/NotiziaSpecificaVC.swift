@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate {
+class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate, UIScrollViewDelegate {
     
     var tuttelenotizie:Array<Notizie>!
     var notizieAll:Array<Notizie>!
@@ -43,7 +43,8 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
     @IBOutlet weak var followStory2: UILabel!
     @IBOutlet weak var viewSwipe: UIView!
     @IBOutlet var storiaTitolo: UILabel!
-    
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var imageBaffo: UIButton!
     @IBOutlet var followStoryLabel: UILabel!
     
     @IBOutlet var viewFollowStoryLabel: UIView!
@@ -60,6 +61,8 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
 
         
         notizieSearch = [Notizie]()
+        
+        scrollView.delegate = self
         
         follow = false
         if(storieSeguite.count > 0){
@@ -224,6 +227,10 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         
     }
 
+    @IBAction func btnBaffo(sender: AnyObject) {
+        scrollView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
+
+    }
     
     @IBAction func btnSubmit(sender: AnyObject) {
         
@@ -252,6 +259,22 @@ class NotiziaSpecificaVC: UIViewController, UISearchBarDelegate, SideBarDelegate
         
     }
     
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)) {
+            //reach bottom
+            
+            
+            
+            imageBaffo.setImage(UIImage(named:"bracket_green.pdf"),forState:UIControlState.Normal)
+            
+        }
+        
+        if (scrollView.contentOffset.y >= 0 && scrollView.contentOffset.y < (scrollView.contentSize.height - scrollView.frame.size.height)){
+            imageBaffo.setImage(UIImage(named:"bracket_gray.pdf"),forState:UIControlState.Normal)
+        }
+    }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {

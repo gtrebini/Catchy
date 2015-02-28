@@ -35,6 +35,8 @@
 		5916B1791A6D2CE40015DDAC /* ico_my_30.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5916B1781A6D2CE40015DDAC /* ico_my_30.pdf */; };
 		5930BBF51A64278600B2626C /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930BBF41A64278600B2626C /* CustomCell.swift */; };
 		594927001A66BB31007E548F /* NotiziaSpecificaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594926FF1A66BB31007E548F /* NotiziaSpecificaVC.swift */; };
+		59520C901AA11E07000CAE30 /* OptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59520C8F1AA11E07000CAE30 /* OptionsVC.swift */; };
+		59520C921AA11E33000CAE30 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59520C911AA11E33000CAE30 /* CheckBox.swift */; };
 		595C3DF61A84FE6B00F5BB19 /* FollowedStoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595C3DF51A84FE6B00F5BB19 /* FollowedStoriesVC.swift */; };
 		5979FDBE1A7FD9C600584856 /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5979FDBD1A7FD9C100584856 /* Oswald-Regular.ttf */; };
 		5981A5CF1A60231600ABBA4D /* lago natura.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5981A5CE1A60231600ABBA4D /* lago natura.jpeg */; };
@@ -126,6 +128,8 @@
 		5916B1781A6D2CE40015DDAC /* ico_my_30.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ico_my_30.pdf; sourceTree = "<group>"; };
 		5930BBF41A64278600B2626C /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		594926FF1A66BB31007E548F /* NotiziaSpecificaVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotiziaSpecificaVC.swift; sourceTree = "<group>"; };
+		59520C8F1AA11E07000CAE30 /* OptionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsVC.swift; sourceTree = "<group>"; };
+		59520C911AA11E33000CAE30 /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		595846CF1A7FAB24007A97DA /* PlayfairDisplay-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PlayfairDisplay-Italic.otf"; path = "playfair-display/PlayfairDisplay-Italic.otf"; sourceTree = "<group>"; };
 		595C3DF51A84FE6B00F5BB19 /* FollowedStoriesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowedStoriesVC.swift; sourceTree = "<group>"; };
 		5979FDBD1A7FD9C100584856 /* Oswald-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Regular.ttf"; sourceTree = "<group>"; };
@@ -251,6 +255,8 @@
 				59A10DF31A8A02DE00DE0000 /* MainNewsVC.swift */,
 				2933E3001A94A251000343BE /* CustomizeTopicsVC.swift */,
 				2933E3021A94A539000343BE /* CustomCellTopic.swift */,
+				59520C8F1AA11E07000CAE30 /* OptionsVC.swift */,
+				59520C911AA11E33000CAE30 /* CheckBox.swift */,
 			);
 			name = Impostazioni;
 			sourceTree = "<group>";
@@ -594,6 +600,7 @@
 				598A3FB01A82609700A0D7F0 /* SideBarTableViewController.swift in Sources */,
 				59994B3A1A5FD6740001B7C4 /* SignUpVC.swift in Sources */,
 				59A10DF41A8A02DE00DE0000 /* MainNewsVC.swift in Sources */,
+				59520C921AA11E33000CAE30 /* CheckBox.swift in Sources */,
 				59E3260F1A6E980200CB2B65 /* Search VC.swift in Sources */,
 				59EDDCB11A63EBA300700539 /* HomeVC.swift in Sources */,
 				59C0BAB11A5EA61C00A4E0E9 /* TutorialVC.swift in Sources */,
@@ -603,6 +610,7 @@
 				59C0BA8D1A5E972800A4E0E9 /* AppDelegate.swift in Sources */,
 				599D9BBE1A76945A00AD7636 /* JsonDecoder.swift in Sources */,
 				59D2AF031A65205200ABD07D /* Notizie.swift in Sources */,
+				59520C901AA11E07000CAE30 /* OptionsVC.swift in Sources */,
 				598A3FB21A82661E00A0D7F0 /* SideBar.swift in Sources */,
 				59994B3D1A5FE1020001B7C4 /* AccessoVC.swift in Sources */,
 				59C0BAB61A5ECAE300A4E0E9 /* Tutorial2VC.swift in Sources */,

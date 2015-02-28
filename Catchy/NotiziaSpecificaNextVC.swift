@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDelegate {
+class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDelegate, UIScrollViewDelegate {
     
     var tuttelenotizie:Array<Notizie>!
     var notizieAll:Array<Notizie>!
@@ -35,9 +35,13 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
     @IBOutlet weak var followStory2: UILabel!
     @IBOutlet weak var viewSwipe: UIView!
     @IBOutlet var storiaTitolo: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var imageBaffo: UIButton!
     
     
     var notizia = Notizie (pageid: 0, pageidstoria: 0, pageurl: "", pageurlstoria: "", titlestoria: "", aggiornato: NSDate(),category: "", date: NSDate(), title: "", image: [UIImage](), body: "")
+    
+ 
     
     
     override func viewDidLoad() {
@@ -45,7 +49,9 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
         super.viewDidLoad()
         
         notizieSearch = [Notizie]()
-
+        
+        scrollView.delegate = self
+        
         searchBar2.delegate = self
         notizieAll = Array<Notizie>()
         idNotizie = Array<Int>()
@@ -76,15 +82,44 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
         followStory2.font = UIFont (name: "PlayfairDisplay-Italic", size: 16)
         
         
-        var swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
-        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         
-        self.viewSwipe.addGestureRecognizer(swipeRight)
+        if tuttelenotizie == nil {
+            
+            let request = NSMutableURLRequest(URL: NSURL(string: "http://23.251.141.230/" + notizia.pageurlstoria)!)
+            request.HTTPMethod = "POST"
+            let postString = ""
+            request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+            
+            
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {(data, response, error)
+                
+                in
+                
+                if error != nil {
+                    println("error=\(error)")
+                    return
+                }
+                
+                
+                
+                let   responseString = NSString(data: data, encoding: NSUTF8StringEncoding)!
+                self.tuttelenotizie = JsonDecoder.decodeNews(responseString)
+                
+            })
+            
+            task.resume()
+            
+            dispatch_async(dispatch_get_main_queue(),{
+                
+                
+                
+                
+            })
+            
+        }
         
         
-        var swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
-        self.viewSwipe.addGestureRecognizer(swipeLeft)
+        
         
         do{
             
@@ -95,9 +130,58 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
         }
         
         indexCorrente = idNotizie.indexOf(notizia.pageid)
+        notiziaIndexCorrente = tuttelenotizie[indexCorrente]
+        immaginiNotiziaCorrente = notiziaIndexCorrente.image as [UIImage]
+        immaginiIndexCorrente = 0
+        
+        var swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        
+        self.viewSwipe.addGestureRecognizer(swipeRight)
+        
+        
+        var swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        self.viewSwipe.addGestureRecognizer(swipeLeft)
+        
+        var swipeRightImmagini = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGestureImmagini:")
+        swipeRightImmagini.direction = UISwipeGestureRecognizerDirection.Right
+        println("swipeRight")
+        self.image2.addGestureRecognizer(swipeRightImmagini)
+        
+        
+        var swipeLeftImmagini = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGestureImmagini:")
+        swipeLeftImmagini.direction = UISwipeGestureRecognizerDirection.Left
+        println("swipeLeft")
+        self.image2.addGestureRecognizer(swipeLeftImmagini)
+        
         
     }
-
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        
+        
+        
+        if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)) {
+            //reach bottom
+            
+            
+            
+            imageBaffo.setImage(UIImage(named:"bracket_green.pdf"),forState:UIControlState.Normal)
+            
+        }
+        
+        if (scrollView.contentOffset.y >= 0 && scrollView.contentOffset.y < (scrollView.contentSize.height - scrollView.frame.size.height)){
+            imageBaffo.setImage(UIImage(named:"bracket_gray.pdf"),forState:UIControlState.Normal)
+        }}
+    
+    
+    
+    
+    @IBAction func btnBaffo(sender: AnyObject) {
+        scrollView.scrollRectToVisible(CGRectMake(0, 0, 1, 1), animated: true)
+    }
     
     @IBAction func btnSubmit(sender: AnyObject) {
         
@@ -107,6 +191,7 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
             sideBar.sideBarContainerView.hidden = true
         }
     }
+    
     
     
     @IBAction func searchButton2(sender: AnyObject) {
@@ -137,38 +222,41 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
             detailVC.tuttelenotizie = tuttelenotizie
             
             
-          detailVC.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
+            detailVC.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
             if(isRight==true){
+                
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
-                    self.view.frame = CGRectOffset(self.view.frame, -UIScreen.mainScreen().bounds.width, 0.0)
-                    detailVC.view.frame = CGRectOffset(detailVC.view.frame, -UIScreen.mainScreen().bounds.width, 0.0)
+                    self.view.frame = CGRectOffset(self.totalView.frame, -UIScreen.mainScreen().bounds.width, 0.0)
+                    detailVC.view.frame = CGRectOffset(self.totalView.frame, -UIScreen.mainScreen().bounds.width, 0.0)
                 })
             }else if(isRight==false){
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
                     
-                    self.view.frame = CGRectOffset(self.view.frame, UIScreen.mainScreen().bounds.width, 0.0)
-                    detailVC.view.frame = CGRectOffset(detailVC.view.frame, 0.0, 0.0)
-
+                    self.view.frame = CGRectOffset(self.totalView.frame, UIScreen.mainScreen().bounds.width, 0.0)
+                    detailVC.view.frame = CGRectOffset(self.totalView.frame, UIScreen.mainScreen().bounds.width, 0.0)
+                    
                 })
             }
             
-           
-   
+            
+            
         }
         
         if (segue.identifier == "searchVC3") {
             var svc = segue.destinationViewController as SearchVC;
             svc.dataPassed = searchBar2.text
             svc.countSearch = notizieSearch.count
-           
+            
             for n in notizieSearch{
-               
+                
                 svc.notizia = n
             }
-
+            
         }
         
     }
+    
+    
     
     
     func searchBarSearchButtonClicked( searchBar: UISearchBar!){
@@ -179,24 +267,19 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
         }while(news.count==0)
         
         for n in news {
-           
+            
             if (NSString(string: n.title).localizedCaseInsensitiveContainsString(searchBar2.text) || NSString(string: n.body).localizedCaseInsensitiveContainsString(searchBar2.text)){
                 println("OK")
                 notizieSearch.append(n)
                 
             }
-         
+            
         }
-
-        
-        
-        
-        
         self.performSegueWithIdentifier("searchVC3", sender:self)
         
     }
     
-
+    
     func sideBarDidSelectButtonAtIndex(index: Int){
         if index == 0{
             sideBar.sideBarContainerView.hidden = true
@@ -233,7 +316,7 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
     
     
     
-   
+    
     
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -243,7 +326,7 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.Right:
                 isRight=false
-                    println("isright=false")
+                println("isright=false")
                 do{
                 }while(tuttelenotizie == nil)
                 
@@ -251,33 +334,33 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
                     var vc:NotiziaSpecificaVC = NotiziaSpecificaVC()
                     notiziaCorrente = tuttelenotizie[indexCorrente!-1]
                     performSegueWithIdentifier("showTutteleNotizieBack", sender: self)
-                 
+                    
                     
                 }
                 else {
                     println("Non ci sono notizie successive")
                 }
-
-
+                
+                
                 
                 
             case UISwipeGestureRecognizerDirection.Left:
                 isRight=true
                 println("isright=true")
                 do{
-                 
+                    
                 }while(tuttelenotizie == nil)
                 
                 if indexCorrente!+1 < tuttelenotizie.count && tuttelenotizie[indexCorrente!+1] !== nil{
                     var vc:NotiziaSpecificaVC = NotiziaSpecificaVC()
                     notiziaCorrente = tuttelenotizie[indexCorrente!+1]
-               
+                    
                     performSegueWithIdentifier("showTutteleNotizieBack", sender: self)
-                   
+                    
                 }else{
                     println("Non ci sono notizie precedenti")
                 }
-
+                
                 
             default: break
             }
@@ -294,8 +377,9 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
                 do{
                     
                 }while(tuttelenotizie == nil)
-                var imageNext:UIImage = immaginiNotiziaCorrente[immaginiIndexCorrente!-1]
+                
                 if  immaginiIndexCorrente!-1 >= 0  && immaginiNotiziaCorrente[immaginiIndexCorrente!-1] !== nil{
+                    var imageNext:UIImage = immaginiNotiziaCorrente[immaginiIndexCorrente!-1]
                     image2.image = immaginiNotiziaCorrente[immaginiIndexCorrente!-1]
                     immaginiIndexCorrente = immaginiIndexCorrente-1
                     
@@ -313,9 +397,9 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
                 do{
                     
                 }while(tuttelenotizie == nil)
-                var imageNext:UIImage = immaginiNotiziaCorrente[immaginiIndexCorrente!+1]
-    
+                
                 if immaginiIndexCorrente!+1 < immaginiNotiziaCorrente.count && immaginiNotiziaCorrente[immaginiIndexCorrente!+1] !== nil{
+                    var imageNext:UIImage = immaginiNotiziaCorrente[immaginiIndexCorrente!+1]
                     image2.image = immaginiNotiziaCorrente[immaginiIndexCorrente!+1]
                     immaginiIndexCorrente = immaginiIndexCorrente+1
                     
@@ -331,12 +415,13 @@ class NotiziaSpecificanextVC: UIViewController, UISearchBarDelegate, SideBarDele
             }
         }
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     
 }
