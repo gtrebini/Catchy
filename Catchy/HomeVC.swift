@@ -12,6 +12,7 @@ import Foundation
     var news = [Notizie]()
     var notizieSearch = [Notizie]()
     var storieSeguite = NSMutableArray()
+    var newsNoNetwork = [Notizie]()
 
 
 class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, SideBarDelegate {
@@ -41,18 +42,26 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         let paths=NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, .UserDomainMask, true)
         let documentsDirectory = paths[0] as NSString
         var path:String=documentsDirectory.stringByAppendingPathComponent("LoginFile.plist")
+        var pathHome:String=documentsDirectory.stringByAppendingPathComponent("Home.plist")
         var fileManager:NSFileManager = NSFileManager.defaultManager()
         if(fileManager.fileExistsAtPath(path)){
+            
             var fileContent:NSData = fileManager.contentsAtPath(path)!
             var str:NSString = NSString (data: fileContent, encoding: NSUTF8StringEncoding)!
             username = str.componentsSeparatedByString("_")[0] as String
             password = str.componentsSeparatedByString("_")[1] as String
+        
+        }else if(fileManager.fileExistsAtPath(pathHome) && Reachability.isConnectedToNetwork()==false){ //se l'utente non è registrato
+                var fileContentHome:NSData = fileManager.contentsAtPath(pathHome)!
+                var strHome:NSString = NSString (data: fileContentHome, encoding: NSUTF8StringEncoding)!
+                newsNoNetwork = JsonDecoder.decodeNewsNoNetwork(strHome)
+                println(newsNoNetwork)
         }
        
+        
+        
         if(username != nil && password != nil ){//utente registrato - online
-            //var fileContent:NSData = fileManager.contentsAtPath(path)!
-            //var str:NSString = NSString (data: fileContent, encoding: NSUTF8StringEncoding)!
-            
+                       
             var streamReader = StreamReader (path:path)
             while let line = streamReader?.nextLine(){
                 println(line)
@@ -98,6 +107,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     
 
         }
+        
 
 
         notizieSearch = [Notizie]()
@@ -136,6 +146,17 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         })
         
         task.resume()
+        
+        do{
+        
+        }while(news.count == 0)
+        
+        if(!fileManager.fileExistsAtPath(path)){
+            var pathHome:String=documentsDirectory.stringByAppendingPathComponent("Home.plist")
+            var fileContentHome:NSData = fileManager.contentsAtPath(pathHome)!
+            var strHome:NSString = NSString (data: fileContentHome, encoding: NSUTF8StringEncoding)!
+            println(strHome)
+        }
     }
 
     

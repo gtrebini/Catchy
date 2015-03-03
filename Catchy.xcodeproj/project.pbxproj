@@ -1,4 +1,4 @@
-// !$*UTF8*$!
+[UIImage]()// !$*UTF8*$!
 {
 	archiveVersion = 1;
 	classes = {
@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2905D12A1AA0763E00F27AE0 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2905D1291AA0763E00F27AE0 /* Reachability.swift */; };
 		2933E2FE1A94A127000343BE /* followed_themes_tab_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 2933E2FC1A94A127000343BE /* followed_themes_tab_off.png */; };
 		2933E2FF1A94A127000343BE /* followed_themes_tab_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 2933E2FD1A94A127000343BE /* followed_themes_tab_on.png */; };
 		2933E3011A94A251000343BE /* CustomizeTopicsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2933E3001A94A251000343BE /* CustomizeTopicsVC.swift */; };
@@ -98,6 +99,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2905D1291AA0763E00F27AE0 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		2933E2FC1A94A127000343BE /* followed_themes_tab_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = followed_themes_tab_off.png; sourceTree = "<group>"; };
 		2933E2FD1A94A127000343BE /* followed_themes_tab_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = followed_themes_tab_on.png; sourceTree = "<group>"; };
 		2933E3001A94A251000343BE /* CustomizeTopicsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizeTopicsVC.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				598A3FAF1A82609700A0D7F0 /* SideBarTableViewController.swift */,
 				598A3FB11A82661E00A0D7F0 /* SideBar.swift */,
 				29A74FEB1A9E29DC001C0A91 /* StreamReader.swift */,
+				2905D1291AA0763E00F27AE0 /* Reachability.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				59C0BA8F1A5E972800A4E0E9 /* SchermataInizialeVC.swift in Sources */,
 				5930BBF51A64278600B2626C /* CustomCell.swift in Sources */,
 				59C0BA8D1A5E972800A4E0E9 /* AppDelegate.swift in Sources */,
+				2905D12A1AA0763E00F27AE0 /* Reachability.swift in Sources */,
 				599D9BBE1A76945A00AD7636 /* JsonDecoder.swift in Sources */,
 				59D2AF031A65205200ABD07D /* Notizie.swift in Sources */,
 				598A3FB21A82661E00A0D7F0 /* SideBar.swift in Sources */,
@@ -737,7 +741,8 @@
 				INFOPLIST_FILE = Catchy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+PROVISIONING_PROFILE = "";"
+
 			};
 			name = Debug;
 		};
@@ -750,7 +755,8 @@
 				INFOPLIST_FILE = Catchy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+PROVISIONING_PROFILE = "";"
+				
 			};
 			name = Release;
 		};
